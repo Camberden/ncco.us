@@ -12,22 +12,7 @@
    --with-pdo-mysql=mysqlnd --with-pdo-odbc=unixODBC,/usr/local/opt/unixodbc --with-pdo-pgsql=/usr/local/opt/libpq --with-pdo-sqlite --with-pgsql=/usr/local/opt/libpq 
    --with-pic --with-snmp=/usr/local/opt/net-snmp --with-sodium --with-sqlite3 --with-tidy=/usr/local/opt/tidy-html5 --with-unixODBC --with-xsl --with-zip --with-zlib 
 
-   --enable-dtrace --with-ldap-sasl 
-   PKG_CONFIG_PATH=/usr/local/opt/pkgconf/lib/pkgconfig:/usr/local/opt/apr/lib/pkgconfig:/usr/local/opt/openssl@3/lib/
-   pkgconfig:/usr/local/opt/apr-util/lib/pkgconfig:/usr/local/opt/argon2/lib/pkgconfig:/usr/local/opt/brotli/lib/
-   pkgconfig:/usr/local/opt/libnghttp2/lib/pkgconfig:/usr/local/opt/libnghttp3/lib/pkgconfig:/usr/local/opt/libngtcp2/lib/
-   pkgconfig:/usr/local/opt/libssh2/lib/pkgconfig:/usr/local/opt/rtmpdump/lib/pkgconfig:/usr/local/opt/lz4/lib/
-   pkgconfig:/usr/local/opt/xz/lib/pkgconfig:/usr/local/opt/zstd/lib/pkgconfig:/usr/local/opt/curl/lib/
-   pkgconfig:/usr/local/opt/unixodbc/lib/pkgconfig:/usr/local/opt/libpng/lib/pkgconfig:/usr/local/opt/freetype/lib/
-   pkgconfig:/usr/local/opt/fontconfig/lib/pkgconfig:/usr/local/opt/jpeg-turbo/lib/pkgconfig:/usr/local/opt/highway/lib/pkgconfig:/usr/local/opt/imath/lib/
-   pkgconfig:/usr/local/opt/libtiff/lib/pkgconfig:/usr/local/opt/little-cms2/lib/pkgconfig:/usr/local/opt/libdeflate/lib/pkgconfig:/usr/local/opt/openjph/lib/
-   pkgconfig:/usr/local/opt/openexr/lib/pkgconfig:/usr/local/opt/webp/lib/pkgconfig:/usr/local/opt/jpeg-xl/lib/pkgconfig:/usr/local/opt/libvmaf/lib/
-   pkgconfig:/usr/local/opt/aom/lib/pkgconfig:/usr/local/opt/dav1d/lib/pkgconfig:/usr/local/opt/libavif/lib/pkgconfig:/usr/local/opt/gd/lib/pkgconfig:/usr/local/opt/gmp/lib/
-   pkgconfig:/usr/local/opt/icu4c@77/lib/pkgconfig:/usr/local/opt/krb5/lib/pkgconfig:/usr/local/opt/libpq/lib/pkgconfig:/usr/local/opt/libsodium/lib/
-   pkgconfig:/usr/local/opt/libzip/lib/pkgconfig:/usr/local/opt/net-snmp/lib/pkgconfig:/usr/local/opt/oniguruma/lib/pkgconfig:/usr/local/opt/openldap/lib/
-   pkgconfig:/usr/local/opt/pcre2/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/tidy-html5/lib/
-   pkgconfig PKG_CONFIG_LIBDIR=/usr/lib/pkgconfig:/usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/14
-   SASL_CFLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/sasl SASL_LIBS=-lsasl2 PHP_BUILD_PROVIDER=Homebrew
+PHP_BUILD_PROVIDER=Homebrew
    ]
   --version           [8.4.14]
   --vernum            [80414]
