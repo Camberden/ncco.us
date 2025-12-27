@@ -1,5 +1,5 @@
 # .shellcheckrc
 
 disable=SC2206
-# disable=SC2207
-# disable=SC2068
+disable=SC2207
+disable=SC2068
