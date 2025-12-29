@@ -72,31 +72,50 @@ h1, h2, h3, h4, h5, h6 {
 	z-index: 100;
 	display: flex;
 	flex-direction: row;
-
 	align-items: center;
+	column-gap: 3rem;
 
 	width: 100%;
 	background-color: var(--doi-black);
 }
 
-.page-grid {
+.navigation-link {
+	border: 0.3rem solid var(--doi-blue) ;
+	background-clip: transparent;
+
+}
+
+.navigation-link:hover {
+	border-color: var(--doi-red);
+	transition: border-color 0.3s ease-in;
+	background-clip: transparent;
+	animation-name: groovymove;
+	animation-duration: 0.6s;
+	animation-iteration-count: initial;
+	
+}
+
+.page-col-grid {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex: auto; /* === flex-grow & flex-shrink & flex-basis */
+	flex-flow: column nowrap; /* === flex-direction & flex-wrap */
+	outline: 0.1rem dotted lightsalmon;
+}
+
+.page-row-grid {
+	display: flex;
+	flex: auto; /* === flex-grow & flex-shrink & flex-basis */
+	flex-flow: row wrap; /* === flex-direction & flex-wrap */
 	outline: 0.1rem dotted lightgreen;
 }
 
 .page-item {
-	flex: 3;
+	flex: 1;
 	min-width: 15rem;
 	min-height: 10rem;
 	border: 0.5rem double var(--doi-red);
 	outline: 0.1rem dotted magenta;
 	margin: 1rem;
-}
-
-.page-item:last-of-type {
-	flex: 5;
 }
 
 .page-item:hover {
@@ -114,15 +133,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes groovymove {
 	33% {
-		background-clip: border-box;
 		border-width: 0.2rem;
 	}
 	66% {
-		border-width: 0.4rem;
+		border-width: 0.3rem;
 	}
 	100% {
 		/* text-shadow: -5px -2px 0px rgb(112, 12, 170); */
-		border-width: 0.5rem;
+		border-width: 0.4rem;
 	}	
 }
 
