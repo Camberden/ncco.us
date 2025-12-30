@@ -1,0 +1,6 @@
+You can load nodes from an external SVG file via the <use> element by specifying the path of the file followed by a URL fragment pointing to the id of the node to load:
+
+
+<svg>
+  <use href="../assets/my-svg.svg#my-fragment"></use>
+</svg>

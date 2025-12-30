@@ -3,6 +3,7 @@
 html {
 	height: 100%;
 	font-size: 16px;
+	/* -ms-scrollbar-base-color:red red red; */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; border: 0;
@@ -99,8 +100,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .navigation-link {
 	background-color: rgb(from var(--doi-black) r g b / 50%);
-	border: 0.5rem double var(--doi-red-rgb);
-	outline: 0.2rem solid var(--doi-red-rgb);
+	border: 0.5rem double transparent;
+	outline: 0.2rem solid transparent;
 
 	/* background-clip: transparent; */
 }
@@ -127,12 +128,12 @@ h1, h2, h3, h4, h5, h6 {
 	min-height: 10rem;
 	border: 0.5rem double var(--doi-red-rgb);
 	outline: 0.2rem solid var(--doi-red-rgb);
-	margin: 1rem;
+	margin: 3rem;
 	padding: 1rem;
 }
 
 .page-item:hover, .navigation-link:hover {
-	border-color: var(--doi-yellow-rgb);
+	border-color: transparent;
 	transition: border-color 0.6s ease-in;
 	animation-name: groovymove;
 	animation-duration: 0.3s;
@@ -151,6 +152,13 @@ h1, h2, h3, h4, h5, h6 {
 	animation-name: groovymove;
 	animation-duration: 0.6s;
 	animation-iteration-count: initial;
+}
+
+
+
+path:hover {
+	animation: linear 0.6s forwards glistenOn;
+	
 }
 
 @keyframes groovymove {
@@ -183,6 +191,44 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+@keyframes svgdo {
+	0% {
+		fill-opacity: 1;
+	}
+	25% {
+		fill-opacity: 0.8;
+	}
+	50% {
+		fill-opacity: 0.6
+	}
+	75% {
+		fill-opacity: 0.8;
+	}
+	100% {
+		fill-opacity: 1;
+	}
+}
+
+@keyframes glistenOn {
+	0% {
+		fill-opacity: 1;
+	}
+	100% {
+
+		fill-opacity: 0.6;
+	}
+}
+@keyframes glistenOff {
+	0% {
+		fill-opacity: 0.6;
+	}
+	100% {
+
+		fill-opacity: 1;
+	}
+}
+
+
 footer {
 	z-index: 75;
 	bottom: 0;
@@ -195,3 +241,68 @@ footer {
 }
 
 
+/* ---------- LIFECRAFT FIELD VALUES ---------- */
+
+.calendar-month {
+	display: inline-block;
+	font-size: 0.7rem;
+	width: 10rem;
+	height: 10rem;
+	border-radius: 0.5rem;
+	border: 0.1rem solid var(--clr-tertiary);
+	color: var(--clr-tertiary);
+	overflow: visible;
+}
+
+.calendar-date {
+	display: inline-block;
+	text-align: center;
+	font-size: 0.7rem;
+	width: 1.5rem;
+	height: 1.2rem;
+	padding-top: 0.2rem;
+	/* border-radius: 0.5rem; */
+	/* margin: 0.1rem; */
+	border: 0.1rem solid var(--doi-black);
+	color: var(--doi-white);
+	overflow: visible;
+}
+
+.calendar-date:hover {
+	border-color: var(--clr-primary);
+
+}
+
+.current-day-highlight {
+	background-color: brown;
+}
+
+.event {
+	background-color: khaki;
+}
+
+.future-event {
+	background-color: cornsilk;
+}
+
+.obligation {
+	color: magenta;
+	font-size: 60%;
+	display: inline;
+	width: 5rem;
+	height: 0.5rem;
+	border: 1px solid #444;
+}
+.obligation:hover {
+	border-color: var(--clr-quaternary);
+}
+
+.aRotation {
+	font-family: 'Courier New', Courier, monospace;
+	color: cyan;
+}
+
+.bRotation {
+	font-family: 'Courier New', Courier, monospace;
+	color: orangered;
+}

@@ -15,7 +15,7 @@
 	<div class="navigation">
 		<!-- <img id="nc-flag" src="nc-flag.svg"/> -->
 		<svg id="nc-flag" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
-			<path style="font-size:12px;fill:#fff;fill-opacity:1;fill-rule:evenodd;stroke-width:1.43966"
+			<path style="font-size:12px;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:1.43966"
 				d="M0 .04289868h750v499.95453H0z" />
 			<path style="font-size:12px;fill:#bf0a30;fill-opacity:1;fill-rule:evenodd;stroke-width:1.01768994"
 				d="M0 .04289868h750v250.06471H0z" />
@@ -138,7 +138,7 @@
 		<span class="navigation-link">Link 1</span>
 		<span class="navigation-link">Link 2</span>
 		<span class="navigation-link">Link 3</span>
-		<span class="navigation-link">Link 4</span>
+		<span id="svg-data" class="navigation-link">Link 4</span>
 		<span class="navigation-link">Link 5</span>
 		<span id="ncco-title-description">A resource site for North Carolina Correctional Officers&emsp;</span>
 	</div>
@@ -148,39 +148,39 @@
 
 		<div class="page-row-grid">
 
-			<div class="page-item">
+			<!-- <div class="page-item">
 				<h2>Heading One</h2>
 				<p>Isn't this pretty bold...</p>
-			</div>
+				<br>
+				<button class="page-button" value="previous">Previous</button>
+				<button class="page-button" value="next">Next</button>
+				<button class="page-button" value="rotation">Rotation</button>
+
+			</div> -->
 
 			<main class="page-item">
-				<p>Templating for the upcoming resource site.</p>
-				<p id="string-thing"></p>
+				<h2>Hello, you.</h2>
+				<p>I'm templating a resource site.</p>
+				<p>Including rotation schedule.</p>
 				<br>
+				<button class="page-button" value="previous">Previous</button>
+				<button class="page-button" value="next">Next</button>
+				<button class="page-button" value="rotation">Rotation</button>
+				<br>
+				<div id="page-field" class="page-row-grid">
+				</div>
 			</main>
 
-			<div class="page-item">
+			<div class="page-item" style="display:none;">
 				<p>Nothing to see here!</p>
 
 			</div>
 
 		</div>
 
-		<div class="page-row-grid">
+		<!-- <div id="page-field" class="page-row-grid">
 
-			<div class="page-item">
-				<p>Nothing to see here!</p>
-			</div>
-
-			<div class="page-item">
-				<p>Nothing to see here!</p>
-			</div>
-
-			<div class="page-item">
-				<p>Nothing to see here!</p>
-			</div>
-
-		</div>
+		</div> -->
 
 	</div>
 
@@ -196,6 +196,7 @@
 		<p>Created by a North Carolina Correctional Officer for North Carolina Correctional Officers</p>
 		<p>Disclaimer: <span style="font-style:italic;">This site is not formally associated with the North Carolina
 				Department of Adult Correction</span></p>
+	
 	</footer>
 
 </body>
