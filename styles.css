@@ -55,6 +55,29 @@ body {
 	background-color: var(--doi-blue);
 }
 
+a {
+	color: var(--doi-white);
+	text-decoration: none;
+
+	background-image: transparent;
+	background-size: 0% 5%;
+	background-position: 0 88%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(120deg, #f59b60 0%, #a1dbf8 100%);
+}
+a:hover {
+	color: var(--doi-yellow);
+	background-image: linear-gradient(yellow, orange);
+	background-size: 100% 5%;
+	transition: background-size 0.2s ease-in;
+}
+
+ul {
+	list-style-type: '✓ ';
+	list-style-position: inside;
+	text-indent: 1rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--doi-font-primary);
 	font-weight: var(--doi-font-bold);
@@ -62,8 +85,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #ncco-title {
+	user-select: none;
 	font-size: 2rem;
-	font-weight: var(--doi-font-normal);
+	font-weight: var(--doi-font-bold);
 	color: var(--doi-red);
 }
 #ncco-title-description {
@@ -82,6 +106,14 @@ h1, h2, h3, h4, h5, h6 {
 	width: 5rem;	
 	height: 3rem;
 }
+:nth-child(-n + 3 of path):hover {
+	animation: linear 0.2s forwards glistenOn;
+}
+:nth-child(-n + 3 of path):not(:hover) {
+	animation: linear 0.2s forwards glistenOff;
+}
+
+
 
 .navigation {
 	z-index: 100;
@@ -101,7 +133,6 @@ h1, h2, h3, h4, h5, h6 {
 .navigation-link {
 	background-color: rgb(from var(--doi-black) r g b / 50%);
 	border: 0.5rem double transparent;
-	outline: 0.2rem solid transparent;
 
 	/* background-clip: transparent; */
 }
@@ -111,14 +142,14 @@ h1, h2, h3, h4, h5, h6 {
 	display: flex;
 	flex: auto; /* === flex-grow & flex-shrink & flex-basis */
 	flex-flow: column nowrap; /* === flex-direction & flex-wrap */
-	outline: 0.1rem dotted lightsalmon;
+	/* outline: 0.1rem dotted lightsalmon; */
 }
 
 .page-row-grid {
 	display: flex;
 	flex: auto; /* === flex-grow & flex-shrink & flex-basis */
 	flex-flow: row wrap; /* === flex-direction & flex-wrap */
-	outline: 0.1rem dotted lightgreen;
+	/* outline: 0.1rem dotted lightgreen; */
 }
 
 .page-item {
@@ -130,16 +161,6 @@ h1, h2, h3, h4, h5, h6 {
 	outline: 0.2rem solid var(--doi-red-rgb);
 	margin: 3rem;
 	padding: 1rem;
-}
-
-.page-item:hover, .navigation-link:hover {
-	border-color: transparent;
-	transition: border-color 0.6s ease-in;
-	animation-name: groovymove;
-	animation-duration: 0.3s;
-	animation-iteration-count: initial;
-	background-color: rgb(from var(--doi-black) r g b / 65%);
-
 }
 
 .page-item:not(:hover) {
@@ -154,12 +175,6 @@ h1, h2, h3, h4, h5, h6 {
 	animation-iteration-count: initial;
 }
 
-
-
-path:hover {
-	animation: linear 0.6s forwards glistenOn;
-	
-}
 
 @keyframes groovymove {
 	33% {
@@ -179,7 +194,6 @@ path:hover {
 		/* text-shadow: -5px -2px 0px rgb(112, 12, 170); */
 	}	
 }
-
 @keyframes sectionsizer { 
 	from {
 		background-size: 100% 10%;
@@ -190,7 +204,6 @@ path:hover {
 		background-position: 100% 100%;
 	}
 }
-
 @keyframes svgdo {
 	0% {
 		fill-opacity: 1;
@@ -208,10 +221,10 @@ path:hover {
 		fill-opacity: 1;
 	}
 }
-
 @keyframes glistenOn {
 	0% {
 		fill-opacity: 1;
+		
 	}
 	100% {
 
@@ -230,15 +243,40 @@ path:hover {
 
 
 footer {
+	/* outline: 0.1rem dotted lightskyblue; */
 	z-index: 75;
 	bottom: 0;
-	position: absolute;
-
-	width: 100%;
+	/* width: 100%; */
 	background-color: var(--doi-black);
 	font-family: var(--doi-font-secondary);
 	font-style: var(--doi-font-italic);
 }
+
+
+
+.footer-col {
+	display: flex;
+	margin: 1%;
+	/* outline: 0.4rem dotted ; */
+
+}
+
+#footer-info {
+	flex: 0.8;
+}
+
+#footer-signature {
+	flex: 0.2;
+	width: 10rem;
+	height: 10rem;
+	opacity: 0.1;
+}
+
+#footer-signature > img {
+	width: 100%;
+	height: 100%;
+}
+
 
 
 /* ---------- LIFECRAFT FIELD VALUES ---------- */
@@ -305,4 +343,124 @@ footer {
 .bRotation {
 	font-family: 'Courier New', Courier, monospace;
 	color: orangered;
+}
+
+
+
+/* ----- STEP PAY PLAN SPECIFIC ----- */
+
+.step-pay-item {
+	margin: 1%;
+	/* outline: 0.3rem dotted aliceblue; */
+}
+
+#step-pay-grid {
+	align-items: baseline;
+	justify-items: center;
+}
+
+#salary-table {
+	background-color: var(--doi-black);
+}
+
+:where(#salary-table) :where(tr, th, td) {
+	font-size: 1rem;
+	border: 1px double var(--doi-red);
+	height: 2rem;
+	padding: 1rem;
+}
+
+.salary-highlight {
+	color: var(--doi-yellow-rgb);
+	background-color: var(--doi-blue);
+}
+
+#salary-values > li {
+	list-style-type: none;
+}
+
+#salary-table-corner {
+	background: var(--doi-black);
+}
+
+/* ----- SITE-WIDE BUTTON COMPONENT ----- */
+
+button {
+	cursor: pointer;
+	user-select: none;
+	font-family: var(--doi-font-secondary);
+	/* color: var(--clr-primary);
+	background: var(--clr-grid-box);
+	border-radius: 0.5rem; */
+	background: linear-gradient(var(yellow, orange));
+	background-clip: border-box;
+	-webkit-background-clip: text;
+	color: transparent;
+	user-select: none;
+	
+	border-top-width: 0.5rem;
+	border-top-color: grey;
+	border-top-style:groove;
+
+	border-left-width: 0.5rem;
+	border-left-color: black;
+	border-left-style: groove;
+
+	border-bottom-width: 1rem;
+	border-bottom-color: black;
+	border-bottom-style: groove;
+
+	border-right-width: 1rem;
+	border-right-color: grey;
+	border-right-style: groove;
+}
+
+.button-highlight {
+	cursor: pointer;
+	position: relative;
+	color: var(--doi-red);
+	background: var(--doi-blue);
+}
+
+.button-depressed {
+
+	position: static;
+	color: var(--clr-secondary);
+	background: var(--clr-quaternary-body);
+	border-top-width: 0.3rem;
+	margin-top: 0.3rem;
+	border-top-color: grey;
+	border-top-style:groove;
+
+	border-left-width: 0.3rem;
+	margin-left: 0.3rem;
+	border-left-color: black;
+	border-left-style: groove;
+
+	border-bottom-width: 0.7rem;
+	margin-bottom: 0.3rem;
+	border-bottom-color: black;
+	border-bottom-style: groove;
+
+	border-right-width: 0.7rem;
+	margin-right: 0.3rem;
+	border-right-color: grey;
+	border-right-style: groove;
+}
+
+.button-grid-row > * {
+	margin-inline-end: 1rem;
+}
+
+/* ----- MEDIA QUERIES ---- */
+
+@media screen and (max-width: 750px) {
+
+:where(#salary-table) :where(tr, th, td) {
+	font-size: 0.7rem;
+	border: 1px double var(--doi-red);
+	height: 2rem;
+	padding: 0.5rem;
+}
+
 }

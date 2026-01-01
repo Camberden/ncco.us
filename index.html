@@ -7,20 +7,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Lora:400italic" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker:400" rel="stylesheet" type="text/css">
 	<script src="action.js" defer></script>
+	<script src="buttons.js" defer></script>
 	<title>NCCO.us</title>
 </head>
 
 <body>
 
 	<div class="navigation">
-		<!-- <img id="nc-flag" src="nc-flag.svg"/> -->
-		<svg id="nc-flag" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+		<svg id="nc-flag" version="1.0" xmlns:ncflag="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
 			<path style="font-size:12px;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:1.43966"
-				d="M0 .04289868h750v499.95453H0z" />
+				d="M0 .04289868h750v499.95453H0z" ncflag:fill="#FFFFFF" />
 			<path style="font-size:12px;fill:#bf0a30;fill-opacity:1;fill-rule:evenodd;stroke-width:1.01768994"
-				d="M0 .04289868h750v250.06471H0z" />
+				d="M0 .04289868h750v250.06471H0z" ncflag:fill="#D71921" />
 			<path style="font-size:12px;fill:#00205B;fill-opacity:1;fill-rule:evenodd;stroke-width:1pt"
-				d="M0-.00000713h250.03131v500H0z" />
+				d="M0-.00000713h250.03131v500H0z" ncflag:fill="#004185" />
 			<path
 				d="M37.394865 117.30837c-15.630966 8.72859-18.46516 12.36895-27.031932 19.06294l18.997861.39755c-.226171 1.76923-4.373446 23.79562-4.766668 25.35001 14.302787-9.50474 21.089463-13.86162 40.603749-19.35917 7.753654-2.15294-.6098-10.03069-1.416702-12.12628-5.301291 2.39271-9.37767 5.23388-13.285624 8.71545"
 				style="font-size:12px;fill:#ffca00;fill-opacity:1;fill-rule:evenodd;stroke:#00205B;stroke-width:1;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;stroke-miterlimit:4" />
@@ -135,68 +135,167 @@
 		</svg>
 
 		<span id="ncco-title">NCCO.us</span>
-		<span class="navigation-link">Link 1</span>
-		<span class="navigation-link">Link 2</span>
-		<span class="navigation-link">Link 3</span>
-		<span id="svg-data" class="navigation-link">Link 4</span>
-		<span class="navigation-link">Link 5</span>
+		<span class="navigation-link"><a href="https://int.dac.nc.gov" target="_blank">Intranet</a></span>
+		<span class="navigation-link"><a href="https://portal.osc.nc.gov/app" target="_blank">Fiori</a></span>
+
 		<span id="ncco-title-description">A resource site for North Carolina Correctional Officers&emsp;</span>
 	</div>
-
 
 	<div class="page-col-grid">
 
 		<div class="page-row-grid">
 
-			<!-- <div class="page-item">
-				<h2>Heading One</h2>
-				<p>Isn't this pretty bold...</p>
-				<br>
-				<button class="page-button" value="previous">Previous</button>
-				<button class="page-button" value="next">Next</button>
-				<button class="page-button" value="rotation">Rotation</button>
-
-			</div> -->
-
 			<main class="page-item">
-				<h2>Hello, you.</h2>
-				<p>I'm templating a resource site.</p>
-				<p>Including rotation schedule.</p>
-				<br>
-				<button class="page-button" value="previous">Previous</button>
-				<button class="page-button" value="next">Next</button>
-				<button class="page-button" value="rotation">Rotation</button>
+				<h2>Biweekly Rotation Calendar</h2>
+				<ul>
+					<li>Browse scheduled off and on days.</li>
+					<li>Project work schedules in future years.</li>
+				</ul>
 				<br>
 				<div id="page-field" class="page-row-grid">
 				</div>
+				<div class="button-grid-row">
+					<button class="page-button" value="previous">Previous</button>
+					<button class="page-button" value="next">Next</button>
+					<button class="page-button" value="rotation">Disable Rotation Display</button>
+				</div>
 			</main>
 
-			<div class="page-item" style="display:none;">
-				<p>Nothing to see here!</p>
+		</div>
 
+		<div class="page-item">
+			<div class="step-pay-item">
+				<h2>NC Correctional Officer Step Pay Plans</h2>
+					<ul>
+						<li>Compare NC CO Step Pay at all levels.</li>
+						<li>Includes data from 2020 through 2025.</li>
+						<li>Includes projected FY Budgets for 2025 & 2026</li>
+					</ul>
+				<br>
+			</div>
+				<!-- STEP PAY PLAN -->
+
+			<div class="page-row-grid" id="step-pay-grid">
+
+				<div class="step-pay-item">
+					<div id="salary-table-div">
+						<div>
+							<h2>Step Pay Plan</h2>
+							<br>
+						</div>
+						<table id="salary-table">
+							<tr>
+								<th id="salary-table-corner"></th>
+								<th>Step 0</th>
+								<th>Step 1</th>
+								<th>Step 2</th>
+								<th>Step 3</th>
+								<th>Step 4</th>
+								<th>Step 5</th>
+								<th>Step 6</th>
+							</tr>
+							<tr>
+								<th>COI</th>
+								<td id="co1-0"></td>
+								<td id="co1-1"></td>
+								<td id="co1-2"></td>
+								<td id="co1-3"></td>
+								<td id="co1-4"></td>
+								<td id="co1-5"></td>
+								<td id="co1-6"></td>
+							</tr>
+							<tr>
+								<th>COII</th>
+								<td id="co2-0"></td>
+								<td id="co2-1"></td>
+								<td id="co2-2"></td>
+								<td id="co2-3"></td>
+								<td id="co2-4"></td>
+								<td id="co2-5"></td>
+								<td id="co2-6"></td>
+							</tr>
+							<tr>
+								<th>COIII</th>
+								<td id="co3-0"></td>
+								<td id="co3-1"></td>
+								<td id="co3-2"></td>
+								<td id="co3-3"></td>
+								<td id="co3-4"></td>
+								<td id="co3-5"></td>
+								<td id="co3-6"></td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				<div class="step-pay-item">
+					<h2>Displaying</h2>
+							<ul>
+								<li>CO<span id="custody-level">_</span></li>
+								<li>Years Experience: <span id="years-experience" label="years-experience">_</span></li>
+								<li>Fiscal Year: <span id="fiscal-year">_</span></li>
+							</ul>
+							<br>
+					<ul id="salary-values">
+						<li>Base-Rate Salary: $<span id="current-salary"></span></li>
+						<hr>
+						<li>Base-Rate Monthly: $<span id="monthly-salary"></span></li>
+						<li>Base-Rate Hourly: $<span id="hourly-salary"></span></li>
+						<li>Base-Rate 11HR Gap: $<span id="gap-pay"></span></li>
+						<hr>
+						<li>Differential Overtime: $<span id="overtime-diff"></span></li>
+						<li>Differential Nightly: $<span id="night-diff"></span></li>
+						<li>Differential Weekend: $<span id="weekend-diff"></span></li>
+						<li>Differential Holiday: $<span id="holiday-diff"></span></li>
+
+					</ul>
+
+				</div>
+			</div><br><br>
+
+			<div id="input-step-information" class="step-pay-item button-grid-row">
+				<div class="button-grid-row">	
+					<span>Custody Level: </span>
+					<button class="step-pay-plan-button" value="decrease-custody-level">Decrease</button>
+					<button class="step-pay-plan-button" value="increase-custody-level">Increase</button>
+				</div>	
+				<div class="button-grid-row">
+					<span>Years of Experience: </span>
+					<button class="step-pay-plan-button" value="decrease-years-experience">Decrease</button>
+					<button class="step-pay-plan-button" value="increase-years-experience">Increase</button>
+				</div>
+				<div class="button-grid-row">
+					<span>Fiscal Year: </span>
+					<button class="step-pay-plan-button" value="previous-fiscal-year">Previous</button>
+					<button class="step-pay-plan-button" value="next-fiscal-year">Next</button>
+				</div>
+					
 			</div>
 
 		</div>
 
-		<!-- <div id="page-field" class="page-row-grid">
-
-		</div> -->
 
 	</div>
 
+	<footer class="page-col-grid">
+		<div class="page-row-grid">
+			<div id="footer-info" class="footer-col">
+				<p>
+					Last update: <span id="latest-update"></span>
+					<br><br>
+					Created by a North Carolina Correctional Officer for North Carolina Correctional Officers
+					<br><br>
+					Disclaimer:
+					<span style="font-style:italic;">This site is not formally associated with the North Carolina
+						Department of Adult Correction</span>
+					<br><br>
+				</p>
+			</div>
 
-
-
-
-
-
-
-	<footer>
-		<p>Last update: <span id="latest-update"></span></p>
-		<p>Created by a North Carolina Correctional Officer for North Carolina Correctional Officers</p>
-		<p>Disclaimer: <span style="font-style:italic;">This site is not formally associated with the North Carolina
-				Department of Adult Correction</span></p>
-	
+			<div id="footer-signature" class="footer-col">
+				<img src="./assets/sig.png" />
+			</div>
+		</div>
 	</footer>
 
 </body>

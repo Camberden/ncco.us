@@ -1,4 +1,5 @@
 # Custom
+*.
 *.sh
 *.yaml
 .htacess
