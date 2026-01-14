@@ -4,3 +4,6 @@ You can load nodes from an external SVG file via the <use> element by specifying
 <svg>
   <use href="../assets/my-svg.svg#my-fragment"></use>
 </svg>
+
+Background Variance In Hue:
+Use: background: var(--doi-blue) with a background-color: rgb(from var(--doi-black) r g b / 50%) overlay

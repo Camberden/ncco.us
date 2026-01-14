@@ -16,11 +16,23 @@ const ButtonInterface = {
 	},
 
 	buttonOnClick: function (button) {
-		button.classList.add("button-highlight");
-		button.classList.add("button-depressed");
-		setTimeout(() => {
-			button.classList.remove("button-depressed");
-		  }, 100);
+		if (button.classList.contains("toggleable")){
+			 if (button.classList.contains("button-toggled")) {
+				button.classList.remove("button-toggled");
+			} else {
+				button.classList.add("button-toggled");
+			}
+		} else {
+			if (button.classList.contains("button-depressed")) {
+				button.classList.remove("button-depressed");
+			} else {
+				button.classList.add("button-depressed");
+				setTimeout(() => {
+					button.classList.remove("button-depressed");
+		 		}, 100);
+			}
+		}
+		
 	},
 
 	modalOnMouseEnter: function(modalPrompt) {

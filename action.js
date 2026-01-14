@@ -9,27 +9,35 @@
  * - Update date to be automated upon server-side script implementation.
  * @author Chrispy
  */
-const latestUpdate = "Wednesday, December 31, 2025";
+const latestUpdate = "Wednesday, January 14, 2026";
 const date = new Date();
 const currentYear = date.getFullYear();
 const currentMonth = date.getMonth();
 const currentDay = date.getDate();
+const currentDayOfWeek = date.getDay();
 const dateOptions = {
 	weekday: "long", //long, narrow
 	year: "numeric", //
 	month: "long", //long, short, narrow, numeric
 	day: "2-digit",
 }
-const currentDate = date.toLocaleDateString("en-US", dateOptions);
+const currentDate = currentYear + "-" + (currentMonth + 1) + "-" + currentDay;
+const currentDateString = date.toLocaleDateString("en-US", dateOptions);
 document.querySelector("#latest-update").innerHTML = latestUpdate;
 let changeYear = currentYear;
 // Nested SVG needs no xmlns =====>
-
 const pageField = document.getElementById("page-field");
 function clearPageField() {
 	pageField.innerHTML = "";
 	console.log("Page Field Cleared!");
 }
+
+console.log("Current Day of Week: " + currentDayOfWeek);
+console.log(date.toDateString(currentDayOfWeek));
+const testDate = new Date(2024, 2, 10);
+const testWeekday = testDate.toLocaleDateString("en-US", dateOptions).split(",");
+const weekday = testWeekday[0];
+console.log("Weekday: " + weekday);
 
 /**
  * 
@@ -59,6 +67,24 @@ function getDaysInMonthOfYear(year, month) {
 	return new Date(year, month, 0).getDate();
 }
 
+/**
+ * 
+ * @param {String} string 
+ * @param {Boolean} firstDay 
+ * @returns String | Number
+ */
+function getDayOfWeek(string, firstDay) {
+	const thisDate = new Date(string.replace("-", ","));
+	if (!firstDay) {
+		const dateString = thisDate.toLocaleDateString("en-US", dateOptions).split(",");
+		return dateString[0];
+	} else {
+		return thisDate.getDay();
+	}
+}
+console.log("getDayOfWeek Test: " + getDayOfWeek("2026-1-4", false));
+console.log("getDayOfWeek Number Test: " + getDayOfWeek("2026-1-4", true));
+
 function generateCalendar(year) {
 	clearPageField();
 	for (let i = 0; i < 12; i++) {
@@ -75,21 +101,74 @@ function generateCalendar(year) {
 		monthSpan.appendChild(br);
 		div.appendChild(monthSpan);
 		div.appendChild(hr);
+		const startingDay = getDayOfWeek(year + "," + (i + 1) + "," + 1, true);
+		if (startingDay != 0) {
+				for(let k = 0; k < startingDay; k++) {
+					const emptySpan = document.createElement("span");
+					emptySpan.setAttribute("class", "empty-span");
+					div.appendChild(emptySpan);
+				}
+			}
 		for (let j = 0; j < getDaysInMonthOfYear(year, i + 1); j++) {
 			const span = document.createElement("span");
 			span.setAttribute("id", `${year}-${i + 1}-${j + 1}`);
 			span.setAttribute("class", "calendar-date");
+			span.setAttribute("value", `${getDayOfWeek(span.id, false)}`);
 			const text = document.createTextNode(j + 1);
 			span.appendChild(text);
 
-			// TODO for creating E schedule.
 			div.appendChild(span);
 		}
 		pageField.appendChild(div);
 	}
-	// addEventsByYear(year);
+	if (changeYear === currentYear) { document.getElementById(`${currentDate}`).classList.add("current-date"); }
 }
 generateCalendar(currentYear);
+
+/**
+ * 
+ * @param {Boolean} enable 
+ */
+function enlargeCalendar(enable) {
+	const calendarDates = document.querySelectorAll(".calendar-date");
+	const emptySpans = document.querySelectorAll(".empty-span");
+	const calendarMonths = document.querySelectorAll(".calendar-month");
+	const theseMonths = document.querySelectorAll(".these-months");
+	
+	calendarDates.forEach(calendarDate => {
+		enable ?
+		calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
+		calendarDate.style = "initial";
+	});
+	emptySpans.forEach(emptySpan => {
+		enable ?
+		emptySpan.style = "width: 3.5rem; height: 1rem;" :
+		emptySpan.style = "initial;";
+	});
+	calendarMonths.forEach(calendarMonth => {
+		enable ?
+		calendarMonth.style = "height: 20rem; width:25rem;" :
+		calendarMonth.style = "initial";
+	});
+	theseMonths.forEach(thisMonth => {
+		if (enable) {
+		thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
+		const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+		for (let i = 0; i < 7; i++) {
+			const span = document.createElement("span");
+			span.classList.add("day-span");
+			const text = document.createTextNode(days[i]);
+			span.appendChild(text);
+			thisMonth.appendChild(span);
+			}
+		} else if (! enable) {
+			thisMonth.style = "initial";
+			while (thisMonth.children.length > 1) {
+				thisMonth.removeChild(thisMonth.lastChild);
+			}
+		}
+	});
+}
 
 /**
  * @todo Assign c based on currentYear param
@@ -130,25 +209,18 @@ function displayBiweeklyRotation(year) {
 	if (indexProper === 0) {
 		indexProper = 14;
 	}
-	// console.log("Year: " + year);
-	// console.log("Index Base: " + indexBase);
-	// console.log("Index Skip: " + indexSkip);
-	// console.log("Index Sum: " + indexSum);
-	// console.log("Index Proper: " + indexProper);
-	// console.log("Result: " + biweeklyRelations[indexProper]);
-	// console.log("Includes Off? " + biweeklyRelations[indexProper].includes("Off"));
-	// console.log("Includes On? " + biweeklyRelations[indexProper].includes("On"));
 
 	calendarDays.forEach(calendarDay => {
 		if (indexProper > 14) {
 			indexProper = 1;
 		}
+		const span = document.createElement("span");
 		if (biweeklyRelations[indexProper].includes("Off")) {
-			calendarDay.innerHTML += `<span class="aRotation">A</span>`;
+			span.classList.add("aRotation");
 		} else if (biweeklyRelations[indexProper].includes("On")){
-			calendarDay.innerHTML += `<span class="bRotation">B</span>`;;
-
+			span.classList.add("bRotation");
 		}
+		calendarDay.appendChild(span);
 		indexProper++;
 	});
 } 
@@ -156,10 +228,11 @@ displayBiweeklyRotation(changeYear);
 
 function enablePageButtons() {
 	let toggleRotation = true;
+	let toggleEnlargeCalendar = false;
 	document.querySelectorAll(".page-button").forEach(button => {
 		
 		button.onclick = function () {
-			// ButtonInterface.buttonOnClick(button);
+			ButtonInterface.buttonOnClick(button);
 			switch (button.value) {
 				case "next":
 					generateCalendar(++changeYear);
@@ -174,17 +247,31 @@ function enablePageButtons() {
 					switchDisplay("bRotation", toggleRotation);
 				break;
 				case "rotation":
-						// displayBiweeklyRotation(changeYear);
 						if (toggleRotation) {
+							this.textContent = "Enable Rotation Display";
 							switchDisplay("aRotation", false);
 							switchDisplay("bRotation", false);
 							toggleRotation = false;
 						} else if (!toggleRotation) {
+							this.textContent = "Disable Rotation Display";
 							switchDisplay("aRotation", true);
 							switchDisplay("bRotation", true);
 							toggleRotation = true;
 						};
 					break;
+				case "enlarge-calendar":
+					if (toggleEnlargeCalendar) {
+						this.textContent = "Enlarge Calendar";
+						enlargeCalendar(false);
+						toggleEnlargeCalendar = false;
+						window.scrollTo(0, 0);
+
+					} else if (! toggleEnlargeCalendar) {
+						this.textContent = "Shrink Calendar";
+						enlargeCalendar(true);
+						toggleEnlargeCalendar = true;
+						window.scrollTo(0, 0);
+					}
 				default:
 					console.log("Default Switch Triggered");
 				break;
@@ -200,7 +287,8 @@ function enablePageButtons() {
 }
 enablePageButtons();
 
-// ----- STEP PAY PLAN MODULE ----- //
+
+// ---------- STEP PAY PLAN MODULE ---------- //
 
 // 160 Sick Hours == 1 Month Service
 
@@ -290,6 +378,7 @@ function calculateStep(){
 	highlightedSalary.classList.add("salary-highlight");
 }
 calculateStep();
+
 function highlightSalary(level, step) {
 	document.getElementById(`co${level + 1}-${step}`).classList.add("salary-highlight");
 }
