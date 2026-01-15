@@ -9,7 +9,7 @@
  * - Update date to be automated upon server-side script implementation.
  * @author Chrispy
  */
-const latestUpdate = "Wednesday, January 14, 2026";
+const latestUpdate = "Thursday, January 15th, 2026";
 const date = new Date();
 const currentYear = date.getFullYear();
 const currentMonth = date.getMonth();
@@ -29,15 +29,11 @@ let changeYear = currentYear;
 const pageField = document.getElementById("page-field");
 function clearPageField() {
 	pageField.innerHTML = "";
-	console.log("Page Field Cleared!");
 }
 
-console.log("Current Day of Week: " + currentDayOfWeek);
-console.log(date.toDateString(currentDayOfWeek));
 const testDate = new Date(2024, 2, 10);
 const testWeekday = testDate.toLocaleDateString("en-US", dateOptions).split(",");
 const weekday = testWeekday[0];
-console.log("Weekday: " + weekday);
 
 /**
  * 
@@ -54,6 +50,48 @@ function switchDisplay(elements, displayed) {
 			element.style.display = "none";
 		});
 	}
+}
+
+function enableNavigationButtons() {
+	document.querySelectorAll(".navigation-button").forEach(button => {
+		button.onclick = function () {
+			ButtonInterface.buttonOnClick(button);
+		}
+		button.onmouseenter = function () {
+			ButtonInterface.buttonOnMouseEnter(button);
+		}
+		button.onmouseleave = function () {
+			ButtonInterface.buttonOnMouseLeave(button);
+		}
+	});
+	document.querySelectorAll(".wip").forEach(wip => {
+		wip.onclick = function() {
+			displayNavigationNotice();
+		}
+	})
+}
+enableNavigationButtons();
+
+function displayNavigationNotice() {
+	const notice = document.querySelector("#navigation-notice");
+	const bar = document.querySelector("#notice-bar");
+	notice.style.display = "flex";
+	bar.classList.add("timeout-bar-animation");
+	const duration = parseInt(bar.getAttribute("value"));
+	console.log(duration);
+	const second = 1000;
+	let countdown = second;
+	bar.innerText = (duration / countdown) + "s";
+	const elapsedTime = setInterval(() => {
+			bar.innerText = ((duration - countdown)/ second) + "s";
+			countdown += second;
+		}, second);
+
+	setTimeout(() => {
+		clearInterval(elapsedTime);
+  		notice.style.display = "none";
+		bar.classList.remove("timeout-bar-animation");
+	}, duration);
 }
 
 // ----- MAIN GENERATOR ----- //
@@ -82,8 +120,6 @@ function getDayOfWeek(string, firstDay) {
 		return thisDate.getDay();
 	}
 }
-console.log("getDayOfWeek Test: " + getDayOfWeek("2026-1-4", false));
-console.log("getDayOfWeek Number Test: " + getDayOfWeek("2026-1-4", true));
 
 function generateCalendar(year) {
 	clearPageField();
@@ -106,6 +142,7 @@ function generateCalendar(year) {
 				for(let k = 0; k < startingDay; k++) {
 					const emptySpan = document.createElement("span");
 					emptySpan.setAttribute("class", "empty-span");
+					emptySpan.appendChild(document.createTextNode("#"));
 					div.appendChild(emptySpan);
 				}
 			}
@@ -273,7 +310,7 @@ function enablePageButtons() {
 						window.scrollTo(0, 0);
 					}
 				default:
-					console.log("Default Switch Triggered");
+					console.log("Default Switch Triggered: enablePageButtons()");
 				break;
 			}
 		}
@@ -437,7 +474,7 @@ function enableStepPayPlanButtons() {
 				previousFiscalYear();
 				break;
 			default:
-				console.log("Hi");
+				console.log("Default Switch Triggered: enableStepPayPlanButtons()");
 				break;
 			};
 		};
