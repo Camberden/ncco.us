@@ -302,6 +302,14 @@ h1, h2, h3, h4, h5, h6 {
 	animation-iteration-count: initial;
 }
 
+#smhu {
+	box-sizing: border-box;
+	outline: 0.5rem double red;
+	border: 0.5rem solid transparent;
+	width: 30rem;
+	height: 20rem;
+}
+
 @keyframes groovymove {
 	33% {
 		outline-width: 0.2rem;
@@ -616,6 +624,68 @@ button {
 	box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem transparent;
 }
 
+.smhu {
+	background: #faece0;
+	backdrop-filter: rgba(33, 0, 0, 0.546);
+	background-image: url("assets/orange-cc-SMHU.jpeg");
+	background-size: cover;
+	width: 100%;
+	height: 20rem;
+	background-blend-mode: exclusion;
+	
+}
+
+.smhu:hover {
+	background-blend-mode: hard-light;
+}
+
+.smhu-darken {
+	animation-name: smhu-darken;
+	animation-timing-function: ease-in-out;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+
+#heater {
+	color: var(--doi-yellow-rgb);
+	background:rgba(19, 19, 56, 0.605);
+	font-size: 5rem;
+	font-style: italic;
+
+}
+#lasted {
+	font-size:3rem;
+	color: var(--doi-red);
+
+}
+#lasted-days {
+	font-size: 4rem;
+	font-style: normal;
+	color: var(--doi-white);
+}
+
+#custody-level {
+	font-size: 1.2rem;
+	color: var(--doi-red);
+}
+#years-experience {
+	font-size: 1.2rem;
+	color: var(--doi-red);
+}
+#fiscal-year {
+	font-size: 1.2rem;
+	color: var(--doi-red);
+}
+
+@keyframes smhu-darken {
+	33% {
+		background-blend-mode: hard-light;
+	} 66% {
+		background-blend-mode: exclusion;
+	} 100% {
+		background-blend-mode: hard-light;
+	}
+}
 /* ----- MEDIA QUERIES ---- */
 
 @media screen and (max-width: 750px) {

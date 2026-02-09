@@ -51,7 +51,6 @@ function switchDisplay(elements, displayed) {
 		});
 	}
 }
-
 function enableNavigationButtons() {
 	document.querySelectorAll(".navigation-button").forEach(button => {
 		button.onclick = function () {
@@ -93,237 +92,6 @@ function displayNavigationNotice() {
 		bar.classList.remove("timeout-bar-animation");
 	}, duration);
 }
-
-// ----- MAIN GENERATOR ----- //
-
-function getMonthText(val){
-	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	return months[val - 1];
-}
-
-function getDaysInMonthOfYear(year, month) {
-	return new Date(year, month, 0).getDate();
-}
-
-/**
- * 
- * @param {String} string 
- * @param {Boolean} firstDay 
- * @returns String | Number
- */
-function getDayOfWeek(string, firstDay) {
-	const thisDate = new Date(string.replace("-", ","));
-	if (!firstDay) {
-		const dateString = thisDate.toLocaleDateString("en-US", dateOptions).split(",");
-		return dateString[0];
-	} else {
-		return thisDate.getDay();
-	}
-}
-
-function generateCalendar(year) {
-	clearPageField();
-	for (let i = 0; i < 12; i++) {
-		const div = document.createElement("div");
-		div.setAttribute("class", "calendar-month");
-		const text = document.createTextNode(getMonthText(i + 1) + " " + year);
-		div.setAttribute("id", `${(getMonthText(i + 1) + "-" + year + "-div")}`);
-		const monthSpan = document.createElement("span");
-		monthSpan.setAttribute("class", "these-months");
-		monthSpan.setAttribute("id", `${getMonthText(i + 1) + "-" + year}`);
-		const br = document.createElement("br");
-		const hr = document.createElement("hr");
-		monthSpan.appendChild(text);
-		monthSpan.appendChild(br);
-		div.appendChild(monthSpan);
-		div.appendChild(hr);
-		const startingDay = getDayOfWeek(year + "," + (i + 1) + "," + 1, true);
-		if (startingDay != 0) {
-				for(let k = 0; k < startingDay; k++) {
-					const emptySpan = document.createElement("span");
-					emptySpan.setAttribute("class", "empty-span");
-					emptySpan.appendChild(document.createTextNode("#"));
-					div.appendChild(emptySpan);
-				}
-			}
-		for (let j = 0; j < getDaysInMonthOfYear(year, i + 1); j++) {
-			const span = document.createElement("span");
-			span.setAttribute("id", `${year}-${i + 1}-${j + 1}`);
-			span.setAttribute("class", "calendar-date");
-			span.setAttribute("value", `${getDayOfWeek(span.id, false)}`);
-			const text = document.createTextNode(j + 1);
-			span.appendChild(text);
-
-			div.appendChild(span);
-		}
-		pageField.appendChild(div);
-	}
-	if (changeYear === currentYear) { document.getElementById(`${currentDate}`).classList.add("current-date"); }
-}
-generateCalendar(currentYear);
-
-/**
- * 
- * @param {Boolean} enable 
- */
-function enlargeCalendar(enable) {
-	const calendarDates = document.querySelectorAll(".calendar-date");
-	const emptySpans = document.querySelectorAll(".empty-span");
-	const calendarMonths = document.querySelectorAll(".calendar-month");
-	const theseMonths = document.querySelectorAll(".these-months");
-	
-	calendarDates.forEach(calendarDate => {
-		enable ?
-		calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
-		calendarDate.style = "initial";
-	});
-	emptySpans.forEach(emptySpan => {
-		enable ?
-		emptySpan.style = "width: 3.5rem; height: 1rem;" :
-		emptySpan.style = "initial;";
-	});
-	calendarMonths.forEach(calendarMonth => {
-		enable ?
-		calendarMonth.style = "height: 20rem; width:25rem;" :
-		calendarMonth.style = "initial";
-	});
-	theseMonths.forEach(thisMonth => {
-		if (enable) {
-		thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
-		const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-		for (let i = 0; i < 7; i++) {
-			const span = document.createElement("span");
-			span.classList.add("day-span");
-			const text = document.createTextNode(days[i]);
-			span.appendChild(text);
-			thisMonth.appendChild(span);
-			}
-		} else if (! enable) {
-			thisMonth.style = "initial";
-			while (thisMonth.children.length > 1) {
-				thisMonth.removeChild(thisMonth.lastChild);
-			}
-		}
-	});
-}
-
-/**
- * @todo Assign c based on currentYear param
- */
-function displayBiweeklyRotation(year) {
-
-	const calendarDays = document.querySelectorAll(".calendar-date");
-	const biweeklyRelations = [
-		"Default", // XX2023 & i0
-		"Long On 1", // 2024 @ i1
-		"Long On 2",
-		"Long Off 1", // 2025 @ i3
-		"Long Off 2", // 2026 @ i4
-		"Long On 3", // 2027 @ i5
-		"Long On 4", // 2028 @ i6
-		"Long On 5", 
-		"Short Off 1", // 2029 @ i8
-		"Short Off 2", // 2030 @ i9
-		"Short On 1", // 2020, 2031 @ i10
-		"Short On 2", // 2032 @i11
-		"Short Off 3", //2021 @ i12
-		"Short Off 4", //2022, 2033 @ i13
-		"Short Off 5", //2023 @ i14
-	];
-
-	// let year = 2025; 
-	// let remainder = year - (year % 40);
-	let indexBase = year % 40; // IndexBase
-	let indexSkip = Math.floor(indexBase / 4); // Amount of times leap year hit
-	let indexSum = indexBase + indexSkip;
-	if (indexBase % 4 === 0) {
-		indexSum -= 1;
-	}
-	if (indexBase === 0 ) {
-		indexSum = 0;
-	}
-	let indexProper = indexSum % 14;
-	if (indexProper === 0) {
-		indexProper = 14;
-	}
-
-	calendarDays.forEach(calendarDay => {
-		if (indexProper > 14) {
-			indexProper = 1;
-		}
-		const span = document.createElement("span");
-		if (biweeklyRelations[indexProper].includes("Off")) {
-			span.classList.add("aRotation");
-		} else if (biweeklyRelations[indexProper].includes("On")){
-			span.classList.add("bRotation");
-		}
-		calendarDay.appendChild(span);
-		indexProper++;
-	});
-} 
-displayBiweeklyRotation(changeYear);
-
-function enablePageButtons() {
-	let toggleRotation = true;
-	let toggleEnlargeCalendar = false;
-	document.querySelectorAll(".page-button").forEach(button => {
-		
-		button.onclick = function () {
-			ButtonInterface.buttonOnClick(button);
-			switch (button.value) {
-				case "next":
-					generateCalendar(++changeYear);
-					displayBiweeklyRotation(changeYear);
-					switchDisplay("aRotation", toggleRotation);
-					switchDisplay("bRotation", toggleRotation);
-				break;
-				case "previous":
-					generateCalendar(--changeYear);
-					displayBiweeklyRotation(changeYear);
-					switchDisplay("aRotation", toggleRotation);
-					switchDisplay("bRotation", toggleRotation);
-				break;
-				case "rotation":
-						if (toggleRotation) {
-							this.textContent = "Enable Rotation Display";
-							switchDisplay("aRotation", false);
-							switchDisplay("bRotation", false);
-							toggleRotation = false;
-						} else if (!toggleRotation) {
-							this.textContent = "Disable Rotation Display";
-							switchDisplay("aRotation", true);
-							switchDisplay("bRotation", true);
-							toggleRotation = true;
-						};
-					break;
-				case "enlarge-calendar":
-					if (toggleEnlargeCalendar) {
-						this.textContent = "Enlarge Calendar";
-						enlargeCalendar(false);
-						toggleEnlargeCalendar = false;
-						window.scrollTo(0, 0);
-
-					} else if (! toggleEnlargeCalendar) {
-						this.textContent = "Shrink Calendar";
-						enlargeCalendar(true);
-						toggleEnlargeCalendar = true;
-						window.scrollTo(0, 0);
-					}
-				default:
-					console.log("Default Switch Triggered: enablePageButtons()");
-				break;
-			}
-		}
-		button.onmouseenter = function () {
-			ButtonInterface.buttonOnMouseEnter(button);
-		}
-		button.onmouseleave = function () {
-			ButtonInterface.buttonOnMouseLeave(button);
-		}
-	});
-}
-enablePageButtons();
-
 
 // ---------- STEP PAY PLAN MODULE ---------- //
 
@@ -378,7 +146,7 @@ let currentSchedule = salarySchedules[fiscalYear - 2020];
 let currentSalary;
 let highlightedSalary;
 let custodyLevel = 1;
-let yearsExperience = 1;
+let yearsExperience = 5;
 
 function nextFiscalYear() {
 		fiscalYear++;
@@ -414,8 +182,6 @@ function calculateStep(){
 	highlightedSalary = document.getElementById(`co${custodyLevel}-${yearsExperience}`);
 	highlightedSalary.classList.add("salary-highlight");
 }
-calculateStep();
-
 function highlightSalary(level, step) {
 	document.getElementById(`co${level + 1}-${step}`).classList.add("salary-highlight");
 }
@@ -487,7 +253,6 @@ function enableStepPayPlanButtons() {
 		}
 	});
 }
-enableStepPayPlanButtons();
 function populateSalaryTable(){
 	for (i = 0; i < currentSchedule.length; i++) {
 		for (j = 0; j < currentSchedule[i].length; j++){
@@ -498,4 +263,66 @@ function populateSalaryTable(){
 		}
 	}
 }
-populateSalaryTable();
+function getDaysInMonthOfYear(year, month) {
+	return new Date(year, month, 0).getDate();
+}
+
+/**
+ * 
+ * @param {Date} present 
+ * @param {Date} birth 
+ */
+function findDaysInception(present, birth) {
+	const yearsSinceBirth = present.getFullYear() - birth.getFullYear() - 1; // -1 accounts for present year lived months
+	
+	console.log(yearsSinceBirth); // Says 32; TODO correct by month.
+	console.log(present.getMonth());
+	console.log(birth.getMonth());
+	const monthOfBirthDaysTotal = new Date(birth.getFullYear(), birth.getMonth(), 0).getDate();
+	const monthOfBirthDaysLived = monthOfBirthDaysTotal - birth.getDate();
+	const presentMonthDaysLived = present.getDate();
+
+	let totalDaysLived = monthOfBirthDaysLived + presentMonthDaysLived;
+	const monthsRemainingInBirthYear = 12 % birth.getMonth();
+	const monthsRemainingInPresentYear = present.getMonth();
+	console.log("Months remaining in Birth Year: " + monthsRemainingInBirthYear);
+	console.log("Remaining in Present Year: " + monthsRemainingInPresentYear);
+
+	const daysRemainingInBirthYear = getDaysInMonthOfYear(birth.getFullYear(), (birth.getMonth() + monthsRemainingInBirthYear));
+
+	// Gathers days following birth month for all months of birth year.
+	for (let i = 1; i <= monthsRemainingInBirthYear; i++) {
+		totalDaysLived += getDaysInMonthOfYear(birth.getFullYear(), (birth.getMonth() + i)); // BIRTH doesn't need +1; it's inbuilt
+	}
+	console.log("Days remaining in birth Year: " + daysRemainingInBirthYear);
+
+	// Gathers days before present month for all lived months of current year.
+	if (present.getMonth() > 0) {
+		for (let i = present.getMonth(); i >= 0; i--) {
+			totalDaysLived += getDaysInMonthOfYear(present.getFullYear(), ((present.getMonth() + 1) - i)); // +1 FOR DAY COUNT VALUES ONLY
+		}
+	}
+
+	// Gathers days between birth year and present year.
+	let by = birth.getFullYear() + 1;
+	console.log(by);
+	for (let i = 0; i < yearsSinceBirth; i++) {
+		for (let j = 1; j <= 12; j++)
+		totalDaysLived += getDaysInMonthOfYear(by, j);
+	}
+	return totalDaysLived -86;
+}
+
+function latestHeaterUpdate() {
+	document.querySelector("#lasted-days").innerHTML = findDaysInception(new Date(), new Date(2025, 2, 5),);
+}
+
+
+(() => {
+
+	calculateStep();
+	enableStepPayPlanButtons();
+	populateSalaryTable();
+	latestHeaterUpdate();
+
+})();
