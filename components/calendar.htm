@@ -1,0 +1,187 @@
+<main>
+
+	<div class="page-item">
+		<h2>Biweekly Rotation Calendar</h2>
+		<ul>
+			<li>Browse scheduled off and on days.</li>
+			<li>Project work schedules in future years.</li>
+		</ul>
+		<br>
+		<div x-data="{ open: true }" $refs.window id="page-field" class="page-row-grid">
+		</div>
+		<div class="button-grid-row">
+			<button class="page-button" value="previous">Previous</button>
+			<button class="page-button" value="next">Next</button>
+			<button class="page-button toggleable" value="rotation">Disable Rotation Display</button>
+			<button class="page-button toggleable" value="enlarge-calendar">Enlarge Calendar</button>
+		</div>
+	</div>
+
+</main>
+
+<script class="component-script" defer>
+
+	function clearPageField() {
+		document.getElementById("page-field").innerHTML = "";
+	}
+
+	function generateCalendar(year) {
+		clearPageField();
+		for (let i = 0; i < 12; i++) {
+			const div = document.createElement("div");
+			div.setAttribute("class", "calendar-month");
+			const text = document.createTextNode(getMonthText(i + 1) + " " + year);
+			div.setAttribute("id", `${(getMonthText(i + 1) + "-" + year + "-div")}`);
+			const monthSpan = document.createElement("span");
+			monthSpan.setAttribute("class", "these-months");
+			monthSpan.setAttribute("id", `${getMonthText(i + 1) + "-" + year}`);
+			const br = document.createElement("br");
+			const hr = document.createElement("hr");
+			monthSpan.appendChild(text);
+			monthSpan.appendChild(br);
+			div.appendChild(monthSpan);
+			div.appendChild(hr);
+			const startingDay = getDayOfWeek(year + "," + (i + 1) + "," + 1, true);
+			if (startingDay != 0) {
+					for(let k = 0; k < startingDay; k++) {
+						const emptySpan = document.createElement("span");
+						emptySpan.setAttribute("class", "empty-span");
+						emptySpan.appendChild(document.createTextNode("#"));
+						div.appendChild(emptySpan);
+					}
+				}
+			for (let j = 0; j < getDaysInMonthOfYear(year, i + 1); j++) {
+				const span = document.createElement("span");
+				span.setAttribute("id", `${year}-${i + 1}-${j + 1}`);
+				span.setAttribute("class", "calendar-date");
+				span.setAttribute("value", `${getDayOfWeek(span.id, false)}`);
+				const text = document.createTextNode(j + 1);
+				span.appendChild(text);
+
+				div.appendChild(span);
+			}
+			document.getElementById("page-field").appendChild(div);
+		}
+		if (changeYear === currentYear) { document.getElementById(`${currentDate}`).classList.add("current-date"); }
+	}
+
+	function enablePageButtons() {
+		let toggleRotation = true;
+		let toggleEnlargeCalendar = false;
+		document.querySelectorAll(".page-button").forEach(button => {
+			
+			button.onclick = function () {
+				CMBRutil.buttonOnClick(button);
+				switch (button.value) {
+					case "next":
+						generateCalendar(++changeYear);
+						displayBiweeklyRotation(changeYear);
+						switchDisplay("aRotation", toggleRotation);
+						switchDisplay("bRotation", toggleRotation);
+					break;
+					case "previous":
+						generateCalendar(--changeYear);
+						displayBiweeklyRotation(changeYear);
+						switchDisplay("aRotation", toggleRotation);
+						switchDisplay("bRotation", toggleRotation);
+					break;
+					case "rotation":
+							if (toggleRotation) {
+								this.textContent = "Enable Rotation Display";
+								switchDisplay("aRotation", false);
+								switchDisplay("bRotation", false);
+								toggleRotation = false;
+							} else if (!toggleRotation) {
+								this.textContent = "Disable Rotation Display";
+								switchDisplay("aRotation", true);
+								switchDisplay("bRotation", true);
+								toggleRotation = true;
+							};
+						break;
+					case "enlarge-calendar":
+						if (toggleEnlargeCalendar) {
+							this.textContent = "Enlarge Calendar";
+							enlargeCalendar(false);
+							toggleEnlargeCalendar = false;
+							window.scrollTo(0, 0);
+
+						} else if (! toggleEnlargeCalendar) {
+							this.textContent = "Shrink Calendar";
+							enlargeCalendar(true);
+							toggleEnlargeCalendar = true;
+							window.scrollTo(0, 0);
+						}
+					default:
+						console.log("Default Switch Triggered: enablePageButtons()");
+					break;
+				}
+			}
+			button.onmouseenter = function () {
+				CMBRutil.buttonOnMouseEnter(button);
+			}
+			button.onmouseleave = function () {
+				CMBRutil.buttonOnMouseLeave(button);
+			}
+		});
+	}
+
+	function displayBiweeklyRotation(year) {
+
+		const calendarDays = document.querySelectorAll(".calendar-date");
+		const biweeklyRelations = [
+			"Default", // XX2023 & i0
+			"Long On 1", // 2024 @ i1
+			"Long On 2",
+			"Long Off 1", // 2025 @ i3
+			"Long Off 2", // 2026 @ i4
+			"Long On 3", // 2027 @ i5
+			"Long On 4", // 2028 @ i6
+			"Long On 5", 
+			"Short Off 1", // 2029 @ i8
+			"Short Off 2", // 2030 @ i9
+			"Short On 1", // 2020, 2031 @ i10
+			"Short On 2", // 2032 @i11
+			"Short Off 3", //2021 @ i12
+			"Short Off 4", //2022, 2033 @ i13
+			"Short Off 5", //2023 @ i14
+		];
+
+		// let year = 2025; 
+		// let remainder = year - (year % 40);
+		let indexBase = year % 40; // IndexBase
+		let indexSkip = Math.floor(indexBase / 4); // Amount of times leap year hit
+		let indexSum = indexBase + indexSkip;
+		if (indexBase % 4 === 0) {
+			indexSum -= 1;
+		}
+		if (indexBase === 0 ) {
+			indexSum = 0;
+		}
+		let indexProper = indexSum % 14;
+		if (indexProper === 0) {
+			indexProper = 14;
+		}
+
+		calendarDays.forEach(calendarDay => {
+			if (indexProper > 14) {
+				indexProper = 1;
+			}
+			const span = document.createElement("span");
+			if (biweeklyRelations[indexProper].includes("Off")) {
+				span.classList.add("aRotation");
+			} else if (biweeklyRelations[indexProper].includes("On")){
+				span.classList.add("bRotation");
+			}
+			calendarDay.appendChild(span);
+			indexProper++;
+		});
+	} 
+
+	( async ()=> {
+
+		generateCalendar(2026);
+		enablePageButtons();
+		displayBiweeklyRotation(2026);
+
+	})();
+</script>
