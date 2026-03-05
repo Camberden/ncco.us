@@ -1,251 +1,300 @@
 <main>
 
-	<div class="page-item">
 
-	<div class="step-pay-item">
-		<h2>NC Correctional Officer Step Pay Plans</h2>
-		<ul>
-			<li>Compare NC CO Step Pay at all levels.</li>
-			<li>Includes data from 2020 through 2025.</li>
-			<li>Includes projected FY Budgets for 2025 & 2026</li>
-		</ul>
-		<br>
-	</div>
+	<!-- STEP PAY PLAN -->
+	<div id="dashboard-step-pay-plan" class="dashboard-item">
 
-		<div id="step-pay-grid" class="page-row-grid">
+		<div>
+			<h2 class="marker-green">Step Pay Plan</h2>
+			<!-- <hr class="hr-cmbr-dark-gradient"> -->
+		</div>
+		<div>
+			<div id="salary-table-div">
 
-			<div class="step-pay-item">
-				<div id="salary-table-div">
-					<div>
-						<h2>Step Pay Plan</h2>
-						<br>
+				<div id="salary-table" class="flex-table">
+					<div class="flex-table-header-row grid-col-8x-1">
+						<div id="salary-table-corner" class="flex-table-side-header"></div>
+						<div id="step-0" class="flex-table-header"><span>Step 0</span></div>
+						<div id="step-1" class="flex-table-header">Step 1</div>
+						<div id="step-2" class="flex-table-header">Step 2</div>
+						<div id="step-3" class="flex-table-header">Step 3</div>
+						<div id="step-4" class="flex-table-header">Step 4</div>
+						<div id="step-5" class="flex-table-header">Step 5</div>
+						<div id="step-6" class="flex-table-header">Step 6</div>
 					</div>
-
-					<table id="salary-table">
-						<tr>
-							<th id="salary-table-corner"></th>
-							<th>Step 0</th>
-							<th>Step 1</th>
-							<th>Step 2</th>
-							<th>Step 3</th>
-							<th>Step 4</th>
-							<th>Step 5</th>
-							<th>Step 6</th>
-						</tr>
-						<tr>
-							<th>COI</th>
-							<td id="co1-0"></td>
-							<td id="co1-1"></td>
-							<td id="co1-2"></td>
-							<td id="co1-3"></td>
-							<td id="co1-4"></td>
-							<td id="co1-5"></td>
-							<td id="co1-6"></td>
-						</tr>
-						<tr>
-							<th>COII</th>
-							<td id="co2-0"></td>
-							<td id="co2-1"></td>
-							<td id="co2-2"></td>
-							<td id="co2-3"></td>
-							<td id="co2-4"></td>
-							<td id="co2-5"></td>
-							<td id="co2-6"></td>
-						</tr>
-						<tr>
-							<th>COIII</th>
-							<td id="co3-0"></td>
-							<td id="co3-1"></td>
-							<td id="co3-2"></td>
-							<td id="co3-3"></td>
-							<td id="co3-4"></td>
-							<td id="co3-5"></td>
-							<td id="co3-6"></td>
-						</tr>
-					</table>
+					<div class="flex-table-body">
+						<div class="flex-table-row grid-col-8x-1">
+							<div id="co1" class="flex-table-side-header">COI</div>
+							<div id="co1-0" class="money"> </div>
+							<div id="co1-1" class="money"></div>
+							<div id="co1-2" class="money"></div>
+							<div id="co1-3" class="money"></div>
+							<div id="co1-4" class="money"></div>
+							<div id="co1-5" class="money"></div>
+							<div id="co1-6" class="money"></div>
+						</div>
+						<div class="flex-table-row grid-col-8x-1">
+							<div class="flex-table-side-header">COII</div>
+							<div id="co2-0" class="money"></div>
+							<div id="co2-1" class="money"></div>
+							<div id="co2-2" class="money"></div>
+							<div id="co2-3" class="money"></div>
+							<div id="co2-4" class="money"></div>
+							<div id="co2-5" class="money"></div>
+							<div id="co2-6" class="money"></div>
+						</div>
+						<div class="flex-table-row grid-col-8x-1">
+							<div class="flex-table-side-header">COIII</div>
+							<div id="co3-0" class="money"></div>
+							<div id="co3-1" class="money"></div>
+							<div id="co3-2" class="money"></div>
+							<div id="co3-3" class="money"></div>
+							<div id="co3-4" class="money"></div>
+							<div id="co3-5" class="money"></div>
+							<div id="co3-6" class="money"></div>
+						</div>
+					</div>
 				</div>
 
 			</div>
-			<div class="step-pay-item">
-				<h2>Displaying</h2>
-				<ul>
-					<li>CO<span id="custody-level" class="step-pay-calculation">_</span></li>
-					<li>Years Experience: <span id="years-experience" class="step-pay-calculation"
-							label="years-experience">_</span></li>
-					<li>Fiscal Year: <span id="fiscal-year" class="step-pay-calculation">_</span></li>
-				</ul>
-				<br>
+			<div class="grid-col-1-1">
 				<ul id="salary-values">
-					<li>Base-Rate Salary: $<span id="current-salary" class="step-pay-calculation"></span></li>
-					<hr>
-					<li>Base-Rate Monthly: $<span id="monthly-salary" class="step-pay-calculation"></span></li>
-					<li>Base-Rate Hourly: $<span id="hourly-salary" class="step-pay-calculation"></span></li>
-					<li>Base-Rate 11HR Gap: $<span id="gap-pay" class="step-pay-calculation"></span></li>
-					<hr>
-					<li>Differential Overtime: $<span id="overtime-diff" class="step-pay-calculation"></span></li>
-					<li>Differential Nightly: $<span id="night-diff" class="step-pay-calculation"></span></li>
-					<li>Differential Weekend: $<span id="weekend-diff" class="step-pay-calculation"></span></li>
-					<li>Differential Holiday: $<span id="holiday-diff" class="step-pay-calculation"></span></li>
+					<h2 class="marker">Rate Calculations</h2><br>
+					<li>Base-Rate Annual Salary: <span id="current-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Monthly: <span id="monthly-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Hourly: <span id="hourly-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 12.25HR Shift <span id="shift-pay" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 11HR Gap: <span id="gap-pay" class="money step-pay-calculation"></span></li>
+					<li>Differential Overtime: <span id="overtime-diff" class="money step-pay-calculation"></span></li>
+					<li>Overtime Hourly: <span id="overtime-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Nightly:<span id="night-diff" class="money step-pay-calculation"></span></li>
+					<li>Nightly Hourly: <span id="nightly-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Weekend:<span id="weekend-diff" class="money step-pay-calculation"></span></li>
+					<li>Weekend Hourly: <span id="weekend-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Holiday:<span id="holiday-diff" class="money step-pay-calculation"></span></li>
+					<li>Holiday Hourly:<span id="holiday-hourly" class="money step-pay-calculation"></span></li>
+
+					
+					
 				</ul>
 
+				<div id="back-pay" class="grid-col-1-1">
+					<h2 class="marker">Back-Pay Calculations</h2><span></span>
+					<div>Start Date:</li> <input id="current-salary" placeholder="$[input]" class="money"></div>
+					<!-- <li>Base-Rate Monthly:</li> <span id="monthly-salary" class="money step-pay-calculation"></span>
+				<li>Base-Rate Hourly:</li> <span id="hourly-salary" class="money step-pay-calculation"></span>
+				<li>Base-Rate 11HR Gap:</li> <span id="gap-pay" class="money step-pay-calculation"></span>
+				<li>Differential Overtime:</li> <span id="overtime-diff" class="money step-pay-calculation"></span>
+				<li>Differential Nightly:</li><span id="night-diff" class="money step-pay-calculation"></span>
+				<li>Differential Weekend:</li><span id="weekend-diff" class="money step-pay-calculation"></span>
+				<li>Differential Holiday:</li><span id="holiday-diff" class="money step-pay-calculation"></span> -->
+				</div>
+			</div>
+		</div>
+		<div class="flex-table">
+			<!-- <hr class="hr-groove-bottom">
+			<hr class="hr-cmbr-dark-gradient"> -->
+			<div class="grid-col-3-1-1">
+				<div>
+					<p class="marker">CO <span id="custody-level">_</span></p>
+				</div>
+				<button class="trigger-box step-pay-plan-button" value="decrease-custody-level">Decrease</button>
+				<button class="trigger-box step-pay-plan-button" value="increase-custody-level">Increase</button>
 			</div>
 
-			<div id="input-step-information" class="step-pay-item button-grid-row">
-				<div class="button-grid-col">
-					<span>Custody Level</span>
-					<div>
-						<button class="step-pay-plan-button" value="decrease-custody-level">Decrease</button>
-						<button class="step-pay-plan-button" value="increase-custody-level">Increase</button>
-					</div>
+			<hr class="hr-cmbr-dark-gradient">
+			<div class="grid-col-3-1-1">
+				<div>
+					<p class="marker">Years Experience: <span id="years-experience" label="years-experience">_</span></p>
 				</div>
-				<div class="button-grid-col">
-					<span>Years of Experience</span>
-					<div>
-						<button class="step-pay-plan-button" value="decrease-years-experience">Decrease</button>
-						<button class="step-pay-plan-button" value="increase-years-experience">Increase</button>
-					</div>
+				<button class="trigger-box step-pay-plan-button" value="decrease-years-experience">Decrease</button>
+				<button class="trigger-box step-pay-plan-button" value="increase-years-experience">Increase</button>
+			</div>
+			<hr class="hr-cmbr-dark-gradient">
+			<div class="grid-col-3-1-1">
+				<div>
+					<p class="marker">Fiscal Year: <span id="fiscal-year">_</span></p>
 				</div>
-				<div class="button-grid-col">
-					<span>Fiscal Year</span>
-					<div>
-						<button class="step-pay-plan-button" value="previous-fiscal-year">Previous</button>
-						<button class="step-pay-plan-button" value="next-fiscal-year">Next</button>
-					</div>
-				</div>
-
+				<button class="trigger-box step-pay-plan-button" value="previous-fiscal-year">Previous</button>
+				<button class="trigger-box step-pay-plan-button" value="next-fiscal-year">Next</button>
+			</div>
 		</div>
 	</div>
+
 </main>
-	
+
 <script class="component-script" defer>
 
-// ---------- STEP PAY PLAN MODULE ---------- //
-// 160 Sick Hours == 1 Month Service
+	// ---------- STEP PAY PLAN MODULE ---------- //
+	// 160 Sick Hours == 1 Month Service
 
-function nextFiscalYear() {
+	function nextFiscalYear() {
 		fiscalYear++;
 		// document.getElementById("fiscal-year").innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
 		currentSchedule = salarySchedules[fiscalYear - 2020];
 		removeHighlightedSalary();
 		populateSalaryTable();
 		calculateStep();
-}
-function previousFiscalYear() {
+	}
+	function previousFiscalYear() {
 		fiscalYear--;
 		// document.getElementById("fiscal-year").innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
 		currentSchedule = salarySchedules[fiscalYear - 2020];
 		removeHighlightedSalary();
 		populateSalaryTable();
 		calculateStep();
-}
-function calculateStep(){
+	}
+	function calculateStep() {
 
-	currentSalary = currentSchedule[custodyLevel - 1][yearsExperience];
-	document.getElementById("current-salary").innerHTML = currentSalary;
-	document.getElementById("monthly-salary").innerHTML = (currentSalary / 12).toFixed(2);
-	let currentHourlyRate = currentSalary / 52 / 40;
-	document.getElementById("hourly-salary").innerHTML = currentHourlyRate.toFixed(2);
-	document.getElementById("gap-pay").innerHTML = (currentHourlyRate * 11).toFixed(2);
-	document.getElementById("overtime-diff").innerHTML = ((currentHourlyRate * 1.5) - currentHourlyRate).toFixed(2) + " ($" + (12.25 * (currentHourlyRate * 1.5)).toFixed(2) + ")";
-	document.getElementById("night-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
-	document.getElementById("weekend-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
-	document.getElementById("holiday-diff").innerHTML = ((currentHourlyRate * 1.75) - currentHourlyRate).toFixed(2);
+		currentSalary = currentSchedule[custodyLevel - 1][yearsExperience];
+		document.getElementById("current-salary").innerHTML = currentSalary;
+		document.getElementById("monthly-salary").innerHTML = (currentSalary / 12).toFixed(2);
+		let currentHourlyRate = currentSalary / 52 / 40;
+		document.getElementById("hourly-salary").innerHTML = currentHourlyRate.toFixed(2);
+		document.getElementById("gap-pay").innerHTML = (currentHourlyRate * 11).toFixed(2);
+		document.getElementById("overtime-diff").innerHTML = ((currentHourlyRate * 1.5) - currentHourlyRate).toFixed(2) + " ($" + (12.25 * (currentHourlyRate * 1.5)).toFixed(2) + ")";
+		document.getElementById("night-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
+		document.getElementById("weekend-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
+		document.getElementById("holiday-diff").innerHTML = ((currentHourlyRate * 1.75) - currentHourlyRate).toFixed(2);
 
-	document.getElementById("custody-level").innerHTML = ("I".repeat(custodyLevel));
-	document.getElementById("years-experience").innerHTML = yearsExperience;
-	highlightedSalary = document.getElementById(`co${custodyLevel}-${yearsExperience}`);
-	highlightedSalary.classList.add("salary-highlight");
-	document.getElementById("fiscal-year").innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
+		document.getElementById("custody-level").innerHTML = ("I".repeat(custodyLevel));
+		document.getElementById("years-experience").innerHTML = yearsExperience;
+		highlightedSalary = document.getElementById(`co${custodyLevel}-${yearsExperience}`);
+		highlightedSalary.classList.add("salary-highlight");
+		document.getElementById("fiscal-year").innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
 
-}
-function highlightSalary(level, step) {
-	document.getElementById(`co${level + 1}-${step}`).classList.add("salary-highlight");
-}
-function removeHighlightedSalary(){
-	highlightedSalary.classList.remove("salary-highlight");
-}
-function increaseCustodyLevel() {
-	if (custodyLevel >= 1 && custodyLevel < 3){
-		custodyLevel += 1;
-		removeHighlightedSalary();
-		calculateStep();
+		return [custodyLevel, yearsExperience, fiscalYear];
 	}
-}
-function decreaseCustodyLevel() {
-	if (custodyLevel <= 3 && custodyLevel > 1){
-		custodyLevel -= 1;
-		removeHighlightedSalary();
-		calculateStep();
+	function highlightSalary(level, step) {
+		document.getElementById(`co${level + 1}-${step}`).classList.add("salary-highlight");
 	}
-}
-function increaseYearsExperience(){
-	if (yearsExperience >= 0 && yearsExperience < 6){
-		yearsExperience += 1;
-		removeHighlightedSalary();
-		calculateStep();
+	function removeHighlightedSalary() {
+		highlightedSalary.classList.remove("salary-highlight");
 	}
-}
-function decreaseYearsExperience() {
-	if (yearsExperience > 0 && yearsExperience <= 6){
-		yearsExperience -= 1;
-		removeHighlightedSalary();
-		calculateStep();
+	function increaseCustodyLevel() {
+		if (custodyLevel >= 1 && custodyLevel < 3) {
+			custodyLevel += 1;
+			removeHighlightedSalary();
+			calculateStep();
+		} 
 	}
-}
-function enableStepPayPlanButtons() {
-	document.querySelectorAll(".step-pay-plan-button").forEach(button => {
-		button.onclick = () => {
-			CMBRutil.buttonOnClick(button);
-		switch (button.value) {
-			case ("increase-custody-level"):
-				increaseCustodyLevel();
-				break;
-			case ("decrease-custody-level"):
-				decreaseCustodyLevel();
-				break;
-			case ("increase-years-experience"):
-				increaseYearsExperience();
-				break;
-			case ("decrease-years-experience"):
-				decreaseYearsExperience();
-				break;
-			case ("next-fiscal-year"):
-				nextFiscalYear();
-				break;
-			case ("previous-fiscal-year"):
-				previousFiscalYear();
-				break;
-			default:
-				console.log("Default Switch Triggered: enableStepPayPlanButtons()");
-				break;
+	function decreaseCustodyLevel() {
+		if (custodyLevel <= 3 && custodyLevel > 1) {
+			custodyLevel -= 1;
+			removeHighlightedSalary();
+			calculateStep();
+		}
+	}
+	function increaseYearsExperience() {
+		if (yearsExperience >= 0 && yearsExperience < 6) {
+			yearsExperience += 1;
+			removeHighlightedSalary();
+			calculateStep();
+		}
+	}
+	function decreaseYearsExperience() {
+		if (yearsExperience > 0 && yearsExperience <= 6) {
+			yearsExperience -= 1;
+			removeHighlightedSalary();
+			calculateStep();
+		}
+	}
+	function enableStepPayPlanButtons() {
+		document.querySelectorAll(".step-pay-plan-button").forEach(button => {
+			button.id = button.value;
+			button.onclick = () => {
+				CMBRutil.buttonOnClick(button);
+				switch (button.value) {
+					case ("increase-custody-level"):
+						increaseCustodyLevel();
+						break;
+					case ("decrease-custody-level"):
+						decreaseCustodyLevel();
+						break;
+					case ("increase-years-experience"):
+						increaseYearsExperience();
+						break;
+					case ("decrease-years-experience"):
+						decreaseYearsExperience();
+						break;
+					case ("next-fiscal-year"):
+						nextFiscalYear();
+						break;
+					case ("previous-fiscal-year"):
+						previousFiscalYear();
+						break;
+					default:
+						console.log("Default Switch Triggered: enableStepPayPlanButtons()");
+						break;
+				};
+				onUpdateValue();
 			};
-		};
 
-		button.onmouseenter = () => {
-			CMBRutil.buttonOnMouseEnter(button);
-		}
-		button.onmouseleave = () => {
-			CMBRutil.buttonOnMouseLeave(button);
-		}
-	});
-}
-function populateSalaryTable(){
-	for (i = 0; i < currentSchedule.length; i++) {
-		for (j = 0; j < currentSchedule[i].length; j++){
-			document.getElementById(`co${i + 1}-${j}`).innerText = currentSchedule[i][j];
-			// if (currentSchedule[i][j] === currentSalary) {
-			// 	document.getElementById(`co${i + 1}-${j}`).classList.add("salary-highlight");
-			// }
+			button.onmouseenter = () => {
+				if (!button.disabled) {
+					CMBRutil.buttonOnMouseEnter(button);
+				}
+			}
+			button.onmouseleave = () => {
+				CMBRutil.buttonOnMouseLeave(button);
+			}
+		});
+	}
+	function populateSalaryTable() {
+		for (i = 0; i < currentSchedule.length; i++) {
+			for (j = 0; j < currentSchedule[i].length; j++) {
+				document.getElementById(`co${i + 1}-${j}`).innerText = currentSchedule[i][j];
+				// if (currentSchedule[i][j] === currentSalary) {
+				// 	document.getElementById(`co${i + 1}-${j}`).classList.add("salary-highlight");
+				// }
+			}
 		}
 	}
-}
+	function onUpdateValue() {
+		document.querySelectorAll(".step-pay-calculation").forEach(calc => {
+			calc.classList.add("value-update");
+			setTimeout(() => {
+				calc.classList.remove("value-update");
+			}, 1000);
+		});
+		
+		document.querySelectorAll(".step-pay-plan-button").forEach(button => {
+			button.disabled = false;
+				switch (button.value) {
+					case ("increase-custody-level"):
+						custodyLevel === 3 ? button.disabled = true : button.disabled = false;
+						break;
+					case ("decrease-custody-level"):
+						custodyLevel === 1 ? button.disabled = true : button.disabled = false;
+						break;
+					case ("increase-years-experience"):
+						yearsExperience === 6 ? button.disabled = true : button.disabled = false;
+						break;
+					case ("decrease-years-experience"):
+						yearsExperience === 0 ? button.disabled = true : button.disabled = false;
+						break;
+					case ("next-fiscal-year"):
+						fiscalYear === 2026 ? button.disabled = true : button.disabled = false;
+						break;
+					case ("previous-fiscal-year"):
+						fiscalYear === 2020 ? button.disabled = true : button.disabled = false;
+						break;
+					default:
+						console.log("Default Switch Triggered: onUpdateValue()");
+					break;
+				}
+		});
+	}
 
-(async () => {
-	
-	populateSalaryTable();
-	calculateStep();
-	enableStepPayPlanButtons();
-	
-})();
+
+
+	(async () => {
+
+		populateSalaryTable();
+		calculateStep();
+		enableStepPayPlanButtons();
+		onUpdateValue();
+
+	})();
 
 </script>

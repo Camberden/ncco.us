@@ -45,36 +45,35 @@
 			<span id="ncco-title"></span>
 			<button class="navigation-button"><a href="https://int.dac.nc.gov" target="_blank">Intranet</a></button>
 			<button class="navigation-button"><a href="https://portal.osc.nc.gov/app" target="_blank">Fiori</a></button>
+			<button class="navigation-button"><a href="https://identity.wd108.myworkday.com/wday/authgwy/nc/upc/login" target="_blank">Internal Jobs</a></button>
+
 		</div>
 		<div id="navigation-bottom" x-data="{ open: false }">
 			<!-- <button class="navigation-button"><a href="https://ncco.us" target="_self">Home</a></button> -->
 			<button class="navigation-button" hx-get="/components/calendar.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Rotation Calendar</button>
 			<button class="navigation-button" hx-get="/components/step.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Step Pay Plan</button>
-			<button class="navigation-button wip" hx-get="/components/backpay.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Backpay 2026</button>
-			<button class="navigation-button wip" hx-get="/components/map.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">System Map</button>
-			<button class="navigation-button wip" hx-get="/components/disciplinary.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Disciplinary</button>
+			<!-- <button class="navigation-button wip" hx-get="/components/map.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">System Map</button> -->
+			<!-- <button class="navigation-button wip" hx-get="/components/disciplinary.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Disciplinary</button> -->
 		</div>
+		<hr class="hr-push-down">
 	</nav>
 
-	<main class="page-col-grid" hx-get="/components/welcome.htm" hx-trigger="load" hx-swap="outerHTML">
-
-	</main>
+	<main class="page-col-grid" hx-get="/components/welcome.htm" hx-trigger="load" hx-swap="outerHTML"></main>
 
 	<footer class="page-row-grid">
 			<div id="footer-info" x-data="{ 'update': latestUpdate }">
-					Last update: <span x-text="update"></span>
-					<br><br>
-					Created by a North Carolina Correctional Officer for North Carolina Correctional Officers
-					<br><br>
-					Disclaimer:
-					<span id="footer-disclaimer">This site is not formally associated with the North Carolina
-						Department of Adult Correction</span>
-					<br><br>
+					<p>Site last updated on: <span x-text="update"></span></p>
+					<p>Created <u>by</u> a North Carolina Correctional Officer <u>for</u> North Carolina Correctional Officers</p>
+					<p>Disclaimer: <span id="footer-disclaimer">This site is not formally associated with the North Carolina
+					Department of Adult Correction</span></p>
 			</div>
 
+			
+
 			<div id="footer-signature">
-				<img src="./assets/sig.png" />
+				<img id="signature" src="./assets/sig.png" />
 			</div>
+
 	</footer>
 
 <script src="action.js"></script>

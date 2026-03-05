@@ -9,7 +9,7 @@
  * - Update date to be automated upon server-side script implementation.
  * @author Camberden (Chrispy | Kippi)  
  */
-const latestUpdate = "Tuesday, March 3rd, 2026";
+const latestUpdate = "Thursday, March 5th, 2026";
 const date = new Date();
 const currentYear = date.getFullYear();
 const currentMonth = date.getMonth();
@@ -81,7 +81,6 @@ function getMonthText(val){
 function getDaysInMonthOfYear(year, month) {
 	return new Date(year, month, 0).getDate();
 }
-
 /**
  * 
  * @param {String} string 
@@ -97,46 +96,6 @@ function getDayOfWeek(string, firstDay) {
 		return thisDate.getDay();
 	}
 }
-
-// function generateCalendar(year) {
-// 	clearPageField();
-// 	for (let i = 0; i < 12; i++) {
-// 		const div = document.createElement("div");
-// 		div.setAttribute("class", "calendar-month");
-// 		const text = document.createTextNode(getMonthText(i + 1) + " " + year);
-// 		div.setAttribute("id", `${(getMonthText(i + 1) + "-" + year + "-div")}`);
-// 		const monthSpan = document.createElement("span");
-// 		monthSpan.setAttribute("class", "these-months");
-// 		monthSpan.setAttribute("id", `${getMonthText(i + 1) + "-" + year}`);
-// 		const br = document.createElement("br");
-// 		const hr = document.createElement("hr");
-// 		monthSpan.appendChild(text);
-// 		monthSpan.appendChild(br);
-// 		div.appendChild(monthSpan);
-// 		div.appendChild(hr);
-// 		const startingDay = getDayOfWeek(year + "," + (i + 1) + "," + 1, true);
-// 		if (startingDay != 0) {
-// 				for(let k = 0; k < startingDay; k++) {
-// 					const emptySpan = document.createElement("span");
-// 					emptySpan.setAttribute("class", "empty-span");
-// 					emptySpan.appendChild(document.createTextNode("#"));
-// 					div.appendChild(emptySpan);
-// 				}
-// 			}
-// 		for (let j = 0; j < getDaysInMonthOfYear(year, i + 1); j++) {
-// 			const span = document.createElement("span");
-// 			span.setAttribute("id", `${year}-${i + 1}-${j + 1}`);
-// 			span.setAttribute("class", "calendar-date");
-// 			span.setAttribute("value", `${getDayOfWeek(span.id, false)}`);
-// 			const text = document.createTextNode(j + 1);
-// 			span.appendChild(text);
-
-// 			div.appendChild(span);
-// 		}
-// 		pageField.appendChild(div);
-// 	}
-// 	if (changeYear === currentYear) { document.getElementById(`${currentDate}`).classList.add("current-date"); }
-// }
 
 /**
  * 
@@ -296,6 +255,23 @@ function enablePageButtons() {
 			CMBRutil.buttonOnMouseLeave(button);
 		}
 	});
+}
+
+/**
+ * 
+ * @param {HTMLCollection} elements the HTML Class to target for display triggering
+ * @param {Boolean} displayed whether the values are displayed at associated HTML Class
+ */
+function switchDisplay(elements, displayed) {
+	if (displayed) {
+		document.querySelectorAll(`.${elements}`).forEach(element => {
+			element.style.display = "inline";
+		});
+	} else if (!displayed) {
+		document.querySelectorAll(`.${elements}`).forEach(element => {
+			element.style.display = "none";
+		});
+	}
 }
 
 ( async () => {
