@@ -164,6 +164,10 @@ h1, h2, h3, h4, h5, h6 {
 	animation-duration: 0.6s;
 	animation-iteration-count: initial;
 }
+.selected-page {
+	color: cornflowerblue;
+	text-shadow: 1px 1px aqua;
+}
 
 /* |==========| §NAVIGATION SPECIFIC |====================> */
 /* |==========| ASSETS AND CONTENT UP ABOVE |====================> */
@@ -373,7 +377,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #upper-left-welcome-frame {
 	box-sizing: border-box;
-	border-top: 0.5rem solid transparent;
 	height: 10rem;
 	background-image: url("/assets/prison-photos/prison-granville.jpeg");
 	background-size: cover;
@@ -381,7 +384,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #upper-right-welcome-frame {
 	box-sizing: border-box;
-	border-top: 0.5rem solid transparent;
 	height: 10rem;
 	background-image: url("/assets/prison-photos/prison-craggy.jpeg");
 	background-size: cover;
@@ -390,7 +392,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #bottom-left-welcome-frame {
 	box-sizing: border-box;
-	border-bottom: 0.5rem solid transparent;
 	height: 10rem;
 	background-image: url("/assets/prison-photos/prison-orange.jpeg");
 	background-size: cover;
@@ -398,7 +399,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #bottom-right-welcome-frame {
 	box-sizing: border-box;
-	border-bottom: 0.5rem solid transparent;
 	height: 10rem;
 	background-image: url("/assets/prison-photos/prison-wake.jpeg");
 	background-size: cover;
@@ -575,7 +575,26 @@ figure:hover > figcaption {
 
 /* |==========| §STEP-PAY-PLAN.HTM SPECIFIC |====================> */
 /* |==========| STYLES THAT MOSTLY BEFIT THAT PAGE |====================> */
+#custody-level {
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
+}
+#years-experience {
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
 
+}
+#fiscal-year {
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
+
+}
 .step-pay-item {
 	margin: 1%;
 	/* outline: 0.3rem dotted aliceblue; */
@@ -592,11 +611,9 @@ figure:hover > figcaption {
 	font-size: 1.5rem;
 	background-color: rgb(from var(--doi-black) r g b / 50%);
 }
-
 .salary-values > li, .salary-values > span {
 	border-bottom: 0.1rem solid var(--doi-black);
 }
-
 .salary-values > li:hover {
 	cursor: pointer;
 	width: 100%;
@@ -617,7 +634,6 @@ figure:hover > figcaption {
 #salary-table-corner {
 	background: var(--doi-black);
 }
-
 .step-pay-calculation {
 	font-weight: bold;
 	/* animation-name: value-updated; */
@@ -627,7 +643,6 @@ figure:hover > figcaption {
 	animation-direction: normal;
 	animation-iteration-count: 1;
 }
-
 .step-pay-calculation:hover {
 	background-color: rgb(from var(--doi-red) r g b / 50%);
 }
@@ -640,8 +655,11 @@ figure:hover > figcaption {
 	font-weight: 700;
 	font-style: normal;
 }
-
-
+#special-titles {
+	font-family: monospace;
+	font-size: 0.5rem;
+	color: var(--doi-white);
+}
 .value-update {
 	animation-name: value-updated;
 	animation-play-state: running;
@@ -650,7 +668,6 @@ figure:hover > figcaption {
 	/* animation-direction: normal; */
 	animation-iteration-count: 1;
 }
-
 #back-pay {
 	font-size: 1.5rem;
 	background-color: rgb(from var(--doi-black) r g b / 50%);
@@ -752,11 +769,9 @@ button {
 	border: 0.2rem solid transparent;
 	transition: all 0.1s ease-in;
 }
-
 button:disabled {
 	cursor:not-allowed;
 }
-
 .button-grid-row {
 	display: flex;
 	flex-flow: row wrap;
@@ -784,9 +799,6 @@ button:disabled {
 	/* border: 0.5rem solid rgb(from var(--doi-yellow) r g b / 30%); */
 	box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem transparent;
 }
-
-
-
 #ncmap {
 	width: 100%;
 	fill: red;
@@ -831,26 +843,6 @@ button:disabled {
 	font-size: 4rem;
 	font-style: normal;
 	color: var(--doi-white);
-}
-#custody-level {
-	font-family: var(--doi-font-secondary);
-	font-size: 2.5rem;
-	color: var(--doi-yellow);
-	text-shadow: 2px 2px red;
-}
-#years-experience {
-	font-family: var(--doi-font-secondary);
-	font-size: 2.5rem;
-	color: var(--doi-yellow);
-	text-shadow: 2px 2px red;
-
-}
-#fiscal-year {
-	font-family: var(--doi-font-secondary);
-	font-size: 2.5rem;
-	color: var(--doi-yellow);
-	text-shadow: 2px 2px red;
-
 }
 
 /* |==========| §FLEX-TABLE PROTOTYPES |====================> */
@@ -1026,7 +1018,8 @@ footer {
 	flex: 0.2;
 	z-index: 100;
 	opacity: 0.2;
-	background-image: url("/assets/OUTSET.png");
+	/* background-image: url("/assets/OUTSET.png"); */
+	background: transparent;
 	background-size: cover;
 }
 
@@ -1127,11 +1120,20 @@ footer {
 
 @media screen and (max-width: 750px) {
 
-:where(#salary-table) :where(tr, th, td) {
-	font-size: 0.7rem;
-	border: 1px double var(--doi-red);
-	height: 2rem;
-	padding: 0.5rem;
-}
+	:where(#salary-table) :where(tr, th, td) {
+		font-size: 0.7rem;
+		border: 1px double var(--doi-red);
+		height: 2rem;
+		padding: 0.5rem;
+	}
+	.salary-values {
+		font-size: 0.7rem;
+	}
+	.step-pay-param {
+		font-size: 1rem;
+	}
+	#special-titles {
+		display: none;
+	}
 
 }

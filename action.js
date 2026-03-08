@@ -2,6 +2,7 @@
  * @description NC Correctional Officer Resource:
  * - From December 2025 to Present
  * - CMBR first-deployed multi-user resource
+ * @version 0.1
  * @variation ncprison.co
  * @variation ncco.help
  * @constant latestUpdate
@@ -23,17 +24,21 @@ const dateOptions = {
 }
 const currentDate = currentYear + "-" + (currentMonth + 1) + "-" + currentDay;
 const currentDateString = date.toLocaleDateString("en-US", dateOptions);
-// document.querySelector("#latest-update").innerHTML = latestUpdate;
 let changeYear = currentYear;
 // Nested SVG needs no xmlns =====>
 const testDate = new Date(2024, 2, 10);
 const testWeekday = testDate.toLocaleDateString("en-US", dateOptions).split(",");
 const weekday = testWeekday[0];
+let openedPage = false;
 
 function enableNavigationButtons() {
 	document.querySelectorAll(".navigation-button").forEach(button => {
 		button.onclick = function () {
-			document.querySelector("body").removeChild(document.querySelector(".component-script"));
+			
+			if (document.querySelector(".component-script")) {
+				document.querySelector("body").removeChild(document.querySelector(".component-script"));
+			}
+			// button.classList.add("selected-page");
 			CMBRutil.buttonOnClick(button);
 		}
 		button.onmouseenter = function () {

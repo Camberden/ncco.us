@@ -3,6 +3,7 @@
 *.sh
 *.yaml
 .htacess
+.shellcheckrc
 
 /vendor/
 node_modules/
