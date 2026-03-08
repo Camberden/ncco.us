@@ -101,7 +101,7 @@
 /* |==========| §SEMANTIC TAGS |====================> */
 /* |==========| NAMED HTML TAG ASSIGNMENTS |====================> */
 body {
-	/* height: 100%; */
+	/* height: 200vh; */
 	font-family: var(--doi-font-primary);
 	color: var(--doi-white);
 	background-color: var(--doi-blue);
@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 	/* background-color: rgb(from var(--doi-black) r g b / 50%); */
 	/* min-width: 15rem;
 	min-height: 10rem; */
-	border: 0.5rem double var(--doi-red-rgb);
+	/* border: 0.5rem double var(--doi-red-rgb); */
 	/* outline: 0.2rem solid var(--doi-red-rgb); */
 	/* margin: 3rem; */
 	/* padding: 1rem; */
@@ -228,7 +228,7 @@ h1, h2, h3, h4, h5, h6 {
 	animation: linear 1s forwards glistenOn;
 }
 :nth-child(-n+3 of path):not(:hover) {
-	animation: ease-in-out 2s forwards glistenOff;
+	animation: ease-in-out 1s forwards glistenOff;
 }
 :nth-child(n+4 of path) {
 	pointer-events: none;
@@ -249,12 +249,11 @@ h1, h2, h3, h4, h5, h6 {
 	column-gap: 3rem;
 
 	width: 100%;
-	/* box-shadow: 1rem 1rem 1rem 1rem var(--doi-black); */
 	background-image: linear-gradient(
 		var(--doi-black),
 		rgb(from var(--doi-black) calc(r + 3) calc(g + 5) calc(b + 0))
 	);
-	/* box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem var(--doi-black); */
+	box-shadow: 4rem 0rem 2rem 0rem var(--doi-black);
 }
 #navigation-bottom {
 	z-index: 100;
@@ -268,7 +267,7 @@ h1, h2, h3, h4, h5, h6 {
 
 	width: 100%;
 	height: 5rem;
-	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgb(from var(--doi-blue) calc(r + 1) calc(g + 3) calc(b + 2));
+	/* box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgb(from var(--doi-blue) calc(r + 1) calc(g + 3) calc(b + 2)); */
 
 }
 #navigation-notice {
@@ -351,6 +350,71 @@ h1, h2, h3, h4, h5, h6 {
 	border: 0.5rem solid transparent;
 	width: 30rem;
 	height: 20rem;
+}
+
+
+#central-welcome-frame {
+	padding: 3rem;
+
+}
+#welcome {
+	font-size: 5rem;
+	font-style: italic;
+	margin-left: 2rem;
+	text-align: center;
+}
+#welcome-text {
+	text-align: center;
+	box-sizing: border-box;
+	border: 0.5rem solid transparent;
+	/* outline: 0.2rem dotted rebeccapurple; */
+	height:5rem;
+	font-size: 1.5rem;
+}
+#upper-left-welcome-frame {
+	box-sizing: border-box;
+	border-top: 0.5rem solid transparent;
+	height: 10rem;
+	background-image: url("/assets/prison-photos/prison-granville.jpeg");
+	background-size: cover;
+	background-position: 50%;
+}
+#upper-right-welcome-frame {
+	box-sizing: border-box;
+	border-top: 0.5rem solid transparent;
+	height: 10rem;
+	background-image: url("/assets/prison-photos/prison-craggy.jpeg");
+	background-size: cover;
+	background-position: 70%;
+
+}
+#bottom-left-welcome-frame {
+	box-sizing: border-box;
+	border-bottom: 0.5rem solid transparent;
+	height: 10rem;
+	background-image: url("/assets/prison-photos/prison-orange.jpeg");
+	background-size: cover;
+	background-position: 50%;
+}
+#bottom-right-welcome-frame {
+	box-sizing: border-box;
+	border-bottom: 0.5rem solid transparent;
+	height: 10rem;
+	background-image: url("/assets/prison-photos/prison-wake.jpeg");
+	background-size: cover;
+	background-position: 70%;
+
+}
+figcaption {
+	font-family: "Permanent Marker";
+	color: orangered;
+	text-shadow: 1px 1px black;
+	box-sizing: border-box;
+	opacity: 0;
+	transition: opacity 1s;
+}
+figure:hover > figcaption {
+	opacity: 1;
 }
 
 /* |==========| §HORIZONTAL RULES <hr> |====================> */
@@ -524,16 +588,16 @@ h1, h2, h3, h4, h5, h6 {
 #salary-table {
 	background-color: var(--doi-black);
 }
-#salary-values {
+.salary-values {
 	font-size: 1.5rem;
 	background-color: rgb(from var(--doi-black) r g b / 50%);
 }
 
-#salary-values > li, #salary-values > span {
+.salary-values > li, .salary-values > span {
 	border-bottom: 0.1rem solid var(--doi-black);
 }
 
-#salary-values > li:hover {
+.salary-values > li:hover {
 	cursor: pointer;
 	width: 100%;
 	position: sticky;
@@ -547,7 +611,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: monospace;
 	border: 0.1rem solid orchid;
 }
-#salary-values > li {
+.salary-values > li {
 	list-style-type: none;
 }
 #salary-table-corner {
@@ -567,6 +631,16 @@ h1, h2, h3, h4, h5, h6 {
 .step-pay-calculation:hover {
 	background-color: rgb(from var(--doi-red) r g b / 50%);
 }
+.step-pay-param {
+	text-align: center;
+	justify-self: center;
+	align-self: center;
+	font-family: Arial, monospace;
+	font-size: 2rem;
+	font-weight: 700;
+	font-style: normal;
+}
+
 
 .value-update {
 	animation-name: value-updated;
@@ -759,16 +833,24 @@ button:disabled {
 	color: var(--doi-white);
 }
 #custody-level {
-	font-size: 1.2rem;
-	color: var(--doi-red);
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
 }
 #years-experience {
-	font-size: 1.2rem;
-	color: var(--doi-red);
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
+
 }
 #fiscal-year {
-	font-size: 1.2rem;
-	color: var(--doi-red);
+	font-family: var(--doi-font-secondary);
+	font-size: 2.5rem;
+	color: var(--doi-yellow);
+	text-shadow: 2px 2px red;
+
 }
 
 /* |==========| §FLEX-TABLE PROTOTYPES |====================> */
@@ -940,15 +1022,13 @@ footer {
 	color: rgb(from var(--doi-blue) calc(r + 30) calc(g + 50) calc(b + 30));
 }
 
-
-
 #footer-signature {
 	flex: 0.2;
 	z-index: 100;
 	opacity: 0.2;
 	background-image: url("/assets/OUTSET.png");
 	background-size: cover;
-}	
+}
 
 #footer-signature > img {
 	width: 100%;
@@ -959,6 +1039,7 @@ footer {
 
 #footer-disclaimer {
 	font-style: var(--doi-font-italic);
+	color: grey;
 }
 
 

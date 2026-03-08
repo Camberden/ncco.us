@@ -1,13 +1,33 @@
 <main>
-
-
 	<!-- STEP PAY PLAN -->
-	<div id="dashboard-step-pay-plan" class="dashboard-item">
+	<div>
 
 		<div>
-			<h2 class="marker-green">Step Pay Plan</h2>
-			<!-- <hr class="hr-cmbr-dark-gradient"> -->
+			<hr class="hr-cmbr-dark-gradient">
 		</div>
+<hr class="hr-cmbr-dark-gradient">
+		<div class=" grid-col-1-1">
+				<ul class="salary-values">
+					<!-- <h2 class="h2-marker">Rate Calculations</h2><br> -->
+					<li>Base-Rate Annual Salary: <span id="current-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Monthly: <span id="monthly-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Hourly: <span id="hourly-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 12.25HR Shift <span id="shift-pay" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 11HR Gap: <span id="gap-pay" class="money step-pay-calculation"></span></li>
+				</ul>
+				<ul class="salary-values">
+					<li>Differential Overtime: <span id="overtime-diff" class="money step-pay-calculation"></span></li>
+					<li>Overtime Hourly: <span id="overtime-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Nightly:<span id="night-diff" class="money step-pay-calculation"></span></li>
+					<li>Nightly Hourly: <span id="nightly-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Weekend:<span id="weekend-diff" class="money step-pay-calculation"></span></li>
+					<li>Weekend Hourly: <span id="weekend-hourly" class="money step-pay-calculation"></span></li>
+					<li>Differential Holiday:<span id="holiday-diff" class="money step-pay-calculation"></span></li>
+					<li>Holiday Hourly:<span id="holiday-hourly" class="money step-pay-calculation"></span></li>
+				</ul>
+
+			</div>
+
 		<div>
 			<div id="salary-table-div">
 
@@ -56,47 +76,15 @@
 					</div>
 				</div>
 
-			</div>
-			<div class="grid-col-1-1">
-				<ul id="salary-values">
-					<h2 class="marker">Rate Calculations</h2><br>
-					<li>Base-Rate Annual Salary: <span id="current-salary" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate Monthly: <span id="monthly-salary" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate Hourly: <span id="hourly-salary" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate 12.25HR Shift <span id="shift-pay" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate 11HR Gap: <span id="gap-pay" class="money step-pay-calculation"></span></li>
-					<li>Differential Overtime: <span id="overtime-diff" class="money step-pay-calculation"></span></li>
-					<li>Overtime Hourly: <span id="overtime-hourly" class="money step-pay-calculation"></span></li>
-					<li>Differential Nightly:<span id="night-diff" class="money step-pay-calculation"></span></li>
-					<li>Nightly Hourly: <span id="nightly-hourly" class="money step-pay-calculation"></span></li>
-					<li>Differential Weekend:<span id="weekend-diff" class="money step-pay-calculation"></span></li>
-					<li>Weekend Hourly: <span id="weekend-hourly" class="money step-pay-calculation"></span></li>
-					<li>Differential Holiday:<span id="holiday-diff" class="money step-pay-calculation"></span></li>
-					<li>Holiday Hourly:<span id="holiday-hourly" class="money step-pay-calculation"></span></li>
-
-					
-					
-				</ul>
-
-				<div id="back-pay" class="grid-col-1-1">
-					<h2 class="marker">Back-Pay Calculations</h2><span></span>
-					<div>Start Date:</li> <input id="current-salary" placeholder="$[input]" class="money"></div>
-					<!-- <li>Base-Rate Monthly:</li> <span id="monthly-salary" class="money step-pay-calculation"></span>
-				<li>Base-Rate Hourly:</li> <span id="hourly-salary" class="money step-pay-calculation"></span>
-				<li>Base-Rate 11HR Gap:</li> <span id="gap-pay" class="money step-pay-calculation"></span>
-				<li>Differential Overtime:</li> <span id="overtime-diff" class="money step-pay-calculation"></span>
-				<li>Differential Nightly:</li><span id="night-diff" class="money step-pay-calculation"></span>
-				<li>Differential Weekend:</li><span id="weekend-diff" class="money step-pay-calculation"></span>
-				<li>Differential Holiday:</li><span id="holiday-diff" class="money step-pay-calculation"></span> -->
-				</div>
-			</div>
+		</div>
+			
 		</div>
 		<div class="flex-table">
-			<!-- <hr class="hr-groove-bottom">
-			<hr class="hr-cmbr-dark-gradient"> -->
+
+			
 			<div class="grid-col-3-1-1">
-				<div>
-					<p class="marker">CO <span id="custody-level">_</span></p>
+				<div class="step-pay-param">
+					<p><i>...a Correctional Officer </i><span id="custody-level">_</span></p>
 				</div>
 				<button class="trigger-box step-pay-plan-button" value="decrease-custody-level">Decrease</button>
 				<button class="trigger-box step-pay-plan-button" value="increase-custody-level">Increase</button>
@@ -104,20 +92,21 @@
 
 			<hr class="hr-cmbr-dark-gradient">
 			<div class="grid-col-3-1-1">
-				<div>
-					<p class="marker">Years Experience: <span id="years-experience" label="years-experience">_</span></p>
+				<div class="step-pay-param">
+					<p><i>with </i><span id="years-experience">_</span><i> Years of Experience...</i></p>
 				</div>
 				<button class="trigger-box step-pay-plan-button" value="decrease-years-experience">Decrease</button>
 				<button class="trigger-box step-pay-plan-button" value="increase-years-experience">Increase</button>
 			</div>
 			<hr class="hr-cmbr-dark-gradient">
 			<div class="grid-col-3-1-1">
-				<div>
-					<p class="marker">Fiscal Year: <span id="fiscal-year">_</span></p>
+				<div class="step-pay-param">
+					<p><i>...during the Fiscal Year </i><span id="fiscal-year">_</span></p>
 				</div>
 				<button class="trigger-box step-pay-plan-button" value="previous-fiscal-year">Previous</button>
 				<button class="trigger-box step-pay-plan-button" value="next-fiscal-year">Next</button>
 			</div>
+
 		</div>
 	</div>
 
@@ -152,7 +141,7 @@
 		let currentHourlyRate = currentSalary / 52 / 40;
 		document.getElementById("hourly-salary").innerHTML = currentHourlyRate.toFixed(2);
 		document.getElementById("gap-pay").innerHTML = (currentHourlyRate * 11).toFixed(2);
-		document.getElementById("overtime-diff").innerHTML = ((currentHourlyRate * 1.5) - currentHourlyRate).toFixed(2) + " ($" + (12.25 * (currentHourlyRate * 1.5)).toFixed(2) + ")";
+		document.getElementById("overtime-diff").innerHTML = ((currentHourlyRate * 1.5) - currentHourlyRate).toFixed(2);
 		document.getElementById("night-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
 		document.getElementById("weekend-diff").innerHTML = (currentHourlyRate / 10).toFixed(2);
 		document.getElementById("holiday-diff").innerHTML = ((currentHourlyRate * 1.75) - currentHourlyRate).toFixed(2);

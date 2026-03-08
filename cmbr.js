@@ -15,6 +15,8 @@ const baseHyperlinks = [
 	"http://localhost:" + basePort,
 	"http://localhost:" + basePort + "/index.html",
 ];
+const baseUrl = document.location.origin + "/";
+
 
 /* |==========| §MULTI-SITE FUNCTIONS |====================> */
 /* |==========| REUSABLE |====================> */

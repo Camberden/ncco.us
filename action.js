@@ -7,9 +7,9 @@
  * @constant latestUpdate
  * - Date is changed for any first update completed on a new day.
  * - Update date to be automated upon server-side script implementation.
- * @author Camberden (Chrispy | Kippi)  
+ * @author Camberden (Chrispy | Kippi)
  */
-const latestUpdate = "Thursday, March 5th, 2026";
+const latestUpdate = "Sunday, March 8th, 2026";
 const date = new Date();
 const currentYear = date.getFullYear();
 const currentMonth = date.getMonth();
@@ -274,8 +274,12 @@ function switchDisplay(elements, displayed) {
 	}
 }
 
-( async () => {
+function handleEvent(event) {
+	console.log("Event type: " + event);
+}
 
+( async () => {
+	
 	enableNavigationButtons();
 
 })();
