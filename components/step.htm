@@ -1,40 +1,14 @@
 <main>
 	<!-- STEP PAY PLAN -->
 	<div>
-
 		<div>
+			<hr class="hr-push-down">
 			<hr class="hr-cmbr-dark-gradient">
 		</div>
-		<hr class="hr-cmbr-dark-gradient">
-		<div class=" grid-col-1-1-1">
-				<ul class="salary-values">
-					<li>Base-Rate Annual Salary: <span id="current-salary" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate Monthly: <span id="monthly-salary" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate Hourly: <span id="hourly-pay" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate 12.25HR Shift <span id="shift-pay" class="money step-pay-calculation"></span></li>
-					<li>Base-Rate 11HR Gap: <span id="gap-pay" class="money step-pay-calculation"></span></li>
-				</ul>
-				<ul class="salary-values">
-					<li>Differential Overtime: <span id="overtime-diff" class="money step-pay-calculation"></span></li>
-					<li>Differential Holiday:<span id="holiday-diff" class="money step-pay-calculation"></span></li>
-					<li>Differential Nightly:<span id="night-diff" class="money step-pay-calculation"></span></li>
-					<li>Differential Weekend:<span id="weekend-diff" class="money step-pay-calculation"></span></li>
-					<li>Special Assignment<span id="special-titles">PERT, FTO, LCO</span>:<span id="special-diff" class="money step-pay-calculation"></span></li>
-				
-				</ul>
-				<ul class="salary-values">
-					<li>Overtime Hourly: <span id="overtime-hourly" class="money step-pay-calculation"></span></li>
-					<li>Holiday Hourly:<span id="holiday-hourly" class="money step-pay-calculation"></span></li>
-					<li>Nightly Hourly: <span id="night-hourly" class="money step-pay-calculation"></span></li>
-					<li>Weekend Hourly: <span id="weekend-hourly" class="money step-pay-calculation"></span></li>
-				</ul>
-
-
-			</div>
+		
 
 		<div>
 			<div id="salary-table-div">
-
 				<div id="salary-table" class="flex-table">
 					<div class="flex-table-header-row grid-col-8x-1">
 						<div id="salary-table-corner" class="flex-table-side-header"></div>
@@ -83,34 +57,64 @@
 		</div>
 			
 		</div>
-		<div class="flex-table">
 
-			
-			<div class="grid-col-3-1-1">
+		<div class="flex-table">
+			<hr class="hr-push-up">
+			<hr class="hr-cmbr-dark-gradient">
+			<div class="grid-col-1-3-1">
+				<button class="trigger-box step-pay-plan-button" value="decrease-custody-level">Decrease</button>
 				<div class="step-pay-param">
 					<p><i>...a Correctional Officer </i><span id="custody-level">_</span></p>
 				</div>
-				<button class="trigger-box step-pay-plan-button" value="decrease-custody-level">Decrease</button>
 				<button class="trigger-box step-pay-plan-button" value="increase-custody-level">Increase</button>
 			</div>
 
 			<hr class="hr-cmbr-dark-gradient">
-			<div class="grid-col-3-1-1">
+			<div class="grid-col-1-3-1">
+				<button class="trigger-box step-pay-plan-button" value="decrease-years-experience">Decrease</button>
 				<div class="step-pay-param">
 					<p><i>...with </i><span id="years-experience">_</span><i> Year<span id="s"></span> of Experience</i></p>
 				</div>
-				<button class="trigger-box step-pay-plan-button" value="decrease-years-experience">Decrease</button>
 				<button class="trigger-box step-pay-plan-button" value="increase-years-experience">Increase</button>
 			</div>
 			<hr class="hr-cmbr-dark-gradient">
-			<div class="grid-col-3-1-1">
+			<div class="grid-col-1-3-1">
+				<button class="trigger-box step-pay-plan-button" value="previous-fiscal-year">Previous</button>
 				<div class="step-pay-param">
 					<p><i>...during the Fiscal Year </i><span id="fiscal-year">_</span></p>
 				</div>
-				<button class="trigger-box step-pay-plan-button" value="previous-fiscal-year">Previous</button>
 				<button class="trigger-box step-pay-plan-button" value="next-fiscal-year">Next</button>
 			</div>
+			<hr class="hr-cmbr-dark-gradient">
+			<hr class="hr-push-down">
+		</div>
 
+		<div class="grid-col-1-1-1">
+				<ul class="salary-values">
+					<li>Base-Rate Annual Salary: <span id="current-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Monthly: <span id="monthly-salary" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate Hourly: <span id="hourly-pay" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 12.25HR Shift <span id="shift-pay" class="money step-pay-calculation"></span></li>
+					<li>Base-Rate 11HR Gap: <span id="gap-pay" class="money step-pay-calculation"></span></li>
+				</ul>
+				<ul class="salary-values">
+					<li>Differential Overtime: <span id="overtime-diff" class="money step-pay-calculation"></span></li>
+					<li>Differential Holiday:<span id="holiday-diff" class="money step-pay-calculation"></span></li>
+					<li>Differential Nightly:<span id="night-diff" class="money step-pay-calculation"></span></li>
+					<li>Differential Weekend:<span id="weekend-diff" class="money step-pay-calculation"></span></li>
+					<li>Special Assignment<span id="special-titles">PERT, FTO, LCO</span>:<span id="special-diff" class="money step-pay-calculation"></span></li>
+				</ul>
+				<ul class="salary-values">
+					<li>Overtime Hourly: <span id="overtime-hourly" class="money step-pay-calculation"></span></li>
+					<li>Holiday Hourly:<span id="holiday-hourly" class="money step-pay-calculation"></span></li>
+					<li>Nightly Hourly: <span id="night-hourly" class="money step-pay-calculation"></span></li>
+					<li>Weekend Hourly: <span id="weekend-hourly" class="money step-pay-calculation"></span></li>
+				</ul>
+		</div>
+
+		<div>
+			<hr class="hr-push-up">
+			<hr class="hr-cmbr-dark-gradient">
 		</div>
 	</div>
 

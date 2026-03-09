@@ -10,7 +10,7 @@
  * - Update date to be automated upon server-side script implementation.
  * @author Camberden (Chrispy | Kippi)
  */
-const latestUpdate = "Sunday, March 8th, 2026";
+const latestUpdate = "Monday, March 9th, 2026";
 const date = new Date();
 const currentYear = date.getFullYear();
 const currentMonth = date.getMonth();
