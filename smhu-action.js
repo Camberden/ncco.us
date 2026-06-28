@@ -64,7 +64,7 @@ function enableNavigationButtons() {
 		}
 	});
 	document.querySelectorAll(".wip").forEach(wip => {
-		wip.onclick = function() {
+		wip.onclick = function () {
 			displayNavigationNotice();
 		}
 	})
@@ -82,13 +82,13 @@ function displayNavigationNotice() {
 	let countdown = second;
 	bar.innerText = (duration / countdown) + "s";
 	const elapsedTime = setInterval(() => {
-			bar.innerText = ((duration - countdown)/ second) + "s";
-			countdown += second;
-		}, second);
+		bar.innerText = ((duration - countdown) / second) + "s";
+		countdown += second;
+	}, second);
 
 	setTimeout(() => {
 		clearInterval(elapsedTime);
-  		notice.style.display = "none";
+		notice.style.display = "none";
 		bar.classList.remove("timeout-bar-animation");
 	}, duration);
 }
@@ -149,22 +149,22 @@ let custodyLevel = 1;
 let yearsExperience = 5;
 
 function nextFiscalYear() {
-		fiscalYear++;
-		fiscalYearDisplay.innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
-		currentSchedule = salarySchedules[fiscalYear - 2020];
-		removeHighlightedSalary();
-		populateSalaryTable();
-		calculateStep();
+	fiscalYear++;
+	fiscalYearDisplay.innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
+	currentSchedule = salarySchedules[fiscalYear - 2020];
+	removeHighlightedSalary();
+	populateSalaryTable();
+	calculateStep();
 }
 function previousFiscalYear() {
-		fiscalYear--;
-		fiscalYearDisplay.innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
-		currentSchedule = salarySchedules[fiscalYear - 2020];
-		removeHighlightedSalary();
-		populateSalaryTable();
-		calculateStep();
+	fiscalYear--;
+	fiscalYearDisplay.innerHTML = `${fiscalYear}-${fiscalYear + 1}`;
+	currentSchedule = salarySchedules[fiscalYear - 2020];
+	removeHighlightedSalary();
+	populateSalaryTable();
+	calculateStep();
 }
-function calculateStep(){
+function calculateStep() {
 
 	currentSalary = currentSchedule[custodyLevel - 1][yearsExperience];
 	document.getElementById("current-salary").innerHTML = currentSalary;
@@ -185,32 +185,32 @@ function calculateStep(){
 function highlightSalary(level, step) {
 	document.getElementById(`co${level + 1}-${step}`).classList.add("salary-highlight");
 }
-function removeHighlightedSalary(){
+function removeHighlightedSalary() {
 	highlightedSalary.classList.remove("salary-highlight");
 }
 function increaseCustodyLevel() {
-	if (custodyLevel >= 1 && custodyLevel < 3){
+	if (custodyLevel >= 1 && custodyLevel < 3) {
 		custodyLevel += 1;
 		removeHighlightedSalary();
 		calculateStep();
 	}
 }
 function decreaseCustodyLevel() {
-	if (custodyLevel <= 3 && custodyLevel > 1){
+	if (custodyLevel <= 3 && custodyLevel > 1) {
 		custodyLevel -= 1;
 		removeHighlightedSalary();
 		calculateStep();
 	}
 }
-function increaseYearsExperience(){
-	if (yearsExperience >= 0 && yearsExperience < 6){
+function increaseYearsExperience() {
+	if (yearsExperience >= 0 && yearsExperience < 6) {
 		yearsExperience += 1;
 		removeHighlightedSalary();
 		calculateStep();
 	}
 }
 function decreaseYearsExperience() {
-	if (yearsExperience > 0 && yearsExperience <= 6){
+	if (yearsExperience > 0 && yearsExperience <= 6) {
 		yearsExperience -= 1;
 		removeHighlightedSalary();
 		calculateStep();
@@ -220,28 +220,28 @@ function enableStepPayPlanButtons() {
 	document.querySelectorAll(".step-pay-plan-button").forEach(button => {
 		button.onclick = () => {
 			ButtonInterface.buttonOnClick(button);
-		switch (button.value) {
-			case ("increase-custody-level"):
-				increaseCustodyLevel();
-				break;
-			case ("decrease-custody-level"):
-				decreaseCustodyLevel();
-				break;
-			case ("increase-years-experience"):
-				increaseYearsExperience();
-				break;
-			case ("decrease-years-experience"):
-				decreaseYearsExperience();
-				break;
-			case ("next-fiscal-year"):
-				nextFiscalYear();
-				break;
-			case ("previous-fiscal-year"):
-				previousFiscalYear();
-				break;
-			default:
-				console.log("Default Switch Triggered: enableStepPayPlanButtons()");
-				break;
+			switch (button.value) {
+				case ("increase-custody-level"):
+					increaseCustodyLevel();
+					break;
+				case ("decrease-custody-level"):
+					decreaseCustodyLevel();
+					break;
+				case ("increase-years-experience"):
+					increaseYearsExperience();
+					break;
+				case ("decrease-years-experience"):
+					decreaseYearsExperience();
+					break;
+				case ("next-fiscal-year"):
+					nextFiscalYear();
+					break;
+				case ("previous-fiscal-year"):
+					previousFiscalYear();
+					break;
+				default:
+					console.log("Default Switch Triggered: enableStepPayPlanButtons()");
+					break;
 			};
 		};
 
@@ -253,9 +253,9 @@ function enableStepPayPlanButtons() {
 		}
 	});
 }
-function populateSalaryTable(){
+function populateSalaryTable() {
 	for (i = 0; i < currentSchedule.length; i++) {
-		for (j = 0; j < currentSchedule[i].length; j++){
+		for (j = 0; j < currentSchedule[i].length; j++) {
 			document.getElementById(`co${i + 1}-${j}`).innerHTML = currentSchedule[i][j];
 			// if (currentSchedule[i][j] === currentSalary) {
 			// 	document.getElementById(`co${i + 1}-${j}`).classList.add("salary-highlight");
@@ -274,7 +274,7 @@ function getDaysInMonthOfYear(year, month) {
  */
 function findDaysInception(present, birth) {
 	const yearsSinceBirth = present.getFullYear() - birth.getFullYear() - 1; // -1 accounts for present year lived months
-	
+
 	console.log(yearsSinceBirth); // Says 32; TODO correct by month.
 	console.log(present.getMonth());
 	console.log(birth.getMonth());
@@ -308,9 +308,9 @@ function findDaysInception(present, birth) {
 	console.log(by);
 	for (let i = 0; i < yearsSinceBirth; i++) {
 		for (let j = 1; j <= 12; j++)
-		totalDaysLived += getDaysInMonthOfYear(by, j);
+			totalDaysLived += getDaysInMonthOfYear(by, j);
 	}
-	return totalDaysLived -86;
+	return totalDaysLived - 86;
 }
 
 function latestHeaterUpdate() {

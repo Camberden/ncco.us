@@ -1,8 +1,8 @@
-/** === CMBR.JS: GLOBAL PERSONAL UTILITIES ===>
+/** === CMBR.JS: GLOBAL UTILITIES ===>
  * @fileOverview Camberden's general site utility toolkit.
  * @interface CMBRutil
- * @author Camberden (Chrispy | Kippi)
- */ 
+ * @author Chrispy (BCN23)
+ */
 // htmx.config.selfRequestsOnly = false;
 
 /** @global @readonly @description Determines the Site's Port Number */
@@ -31,26 +31,26 @@ const CMBRutil = {
 	buttonOnMouseEnter: function (button) {
 		if (!button.classList.contains("button-toggled")) {
 			button.classList.add("button-highlight");
-		} 
+		}
 	},
 	buttonOnMouseLeave: function (button) {
 		button.classList.remove("button-highlight");
 	},
 	buttonOnClick: function (button) {
-		if (button.classList.contains("toggleable")){
+		if (button.classList.contains("toggleable")) {
 
-			 if (button.classList.contains("button-toggled")) {
+			if (button.classList.contains("button-toggled")) {
 				button.classList.remove("button-toggled");
 			} else {
 				button.classList.add("button-toggled");
 			}
 
 		} else {
-		button.classList.add("button-depressed");
+			button.classList.add("button-depressed");
 
-		setTimeout(() => {
-			button.classList.remove("button-depressed");
-		}, 200);
+			setTimeout(() => {
+				button.classList.remove("button-depressed");
+			}, 200);
 		}
 	},
 	/**
@@ -66,7 +66,7 @@ const CMBRutil = {
 			if (configured) {
 				console.log("Running and configured!");
 				document.querySelectorAll("form").forEach(form => {
-					form.addEventListener("submit", (e)=> {e.preventDefault(); });
+					form.addEventListener("submit", (e) => { e.preventDefault(); });
 				});
 			} else {
 				console.log("Running! (configuration disabled)");
@@ -81,38 +81,38 @@ const CMBRutil = {
 					case "dark":
 						document.querySelector("body").setAttribute("data-theme", "dark");
 						button.style.color = "initial";
-						document.getElementById("light").style.color = "transparent";				
+						document.getElementById("light").style.color = "transparent";
 						document.getElementById("legacy").style.color = "transparent";
 						// document.getElementById("paperesque").style.color = "transparent";
 
-					break;
+						break;
 					case "light":
 						document.querySelector("body").setAttribute("data-theme", "light");
 						button.style.color = "initial";
-						document.getElementById("dark").style.color = "transparent";				
+						document.getElementById("dark").style.color = "transparent";
 						document.getElementById("legacy").style.color = "transparent";
 						// document.getElementById("paperesque").style.color = "transparent";
 
-					break;
+						break;
 					case "legacy":
 						document.querySelector("body").setAttribute("data-theme", "legacy");
 						button.style.color = "initial";
-						document.getElementById("dark").style.color = "transparent";				
+						document.getElementById("dark").style.color = "transparent";
 						document.getElementById("light").style.color = "transparent";
 						// document.getElementById("paperesque").style.color = "transparent";
 
-					break;
+						break;
 					case "paperesque":
 						document.querySelector("body").setAttribute("data-theme", "paperesque");
 						button.style.color = "initial";
-						document.getElementById("dark").style.color = "transparent";				
+						document.getElementById("dark").style.color = "transparent";
 						document.getElementById("light").style.color = "transparent";
 						// document.getElementById("legacy").style.color = "transparent";
 
-					break;
+						break;
 					default:
 						console.log("Light, Dark, and Lavendarium.");
-					break;
+						break;
 				}
 			}
 		});
@@ -120,7 +120,7 @@ const CMBRutil = {
 	},
 
 	/** @returns {Boolean} `true` if file:// protocol | `false` otherwise */
-	acceptableProtocol: function() {
+	acceptableProtocol: function () {
 		if (document.location.protocol === "file:") {
 			// console.log("<‰ File Protocol Detected ‰>");
 			return false;
@@ -136,8 +136,8 @@ const CMBRutil = {
 	 * @description Reads site index URL and provides gateway for development servers and all configured domains
 	 *  */
 	atSiteIndex: function () {
-	if (this.acceptableProtocol() && document.location.href.endsWith("index.html")) {
-		return true;
+		if (this.acceptableProtocol() && document.location.href.endsWith("index.html")) {
+			return true;
 		} else if (baseHyperlinks.includes(document.location.href)) {
 			return true;
 		} else if (document.location.href.endsWith("index.html")) {
@@ -187,51 +187,51 @@ const CMBRutil = {
 	 * @implements {Promise<Object>} 
 	 * 
 	 */
-	connectCMBRjson: async function(query) {
+	connectCMBRjson: async function (query) {
 		return fetch(`${document.location.origin}/cmbr.json`)
-		.then(data => data.json())
-		.then(data => {
-			// console.log(data);
-			console.log("QUERY BEFORE RESOLUTION: " + query[0]);
-			return data;
-		})
-		.then((data) => {
-			query[0] == "travel-photos" ? console.log("QUERY 0 SAME: " + query[0]) : console.log("QUERY 0 NOT SAME: " + query[0]);
-			query[1] == 1 ? console.log("QUERY 1 SAME: " + query[1]) : console.log("QUERY 1 NOT SAME: " + query[1]);
-			console.log("QUERY LENGTH: " + query.length);
-			switch(query[0]) {
-				case "travel-photos":
-					if (query.length == 1) {
-						// console.log(data[query[0]].items);
-						return (data[query[0]].items);
+			.then(data => data.json())
+			.then(data => {
+				// console.log(data);
+				console.log("QUERY BEFORE RESOLUTION: " + query[0]);
+				return data;
+			})
+			.then((data) => {
+				query[0] == "travel-photos" ? console.log("QUERY 0 SAME: " + query[0]) : console.log("QUERY 0 NOT SAME: " + query[0]);
+				query[1] == 1 ? console.log("QUERY 1 SAME: " + query[1]) : console.log("QUERY 1 NOT SAME: " + query[1]);
+				console.log("QUERY LENGTH: " + query.length);
+				switch (query[0]) {
+					case "travel-photos":
+						if (query.length == 1) {
+							// console.log(data[query[0]].items);
+							return (data[query[0]].items);
+							break;
+						}
+						// console.log(data[query[0]].items[query[1]]);
+						return (data[query[0]].items[query[1]]);
 						break;
-					}
-					// console.log(data[query[0]].items[query[1]]);
-					return (data[query[0]].items[query[1]]);
-					break;
-				break;
-				case "sections":
-					// console.log("sections");
-					return data["sections"];
-				break;
-				case "blog":
-					if (query.length == 1) {
-						// console.log(data[query[0]]);
-						return (data[query[0]]);
 						break;
-					}
-					let post = ("post-" + query[1]);
-					sout("blog as post = " + post);
-					// console.log(data[query[0]][post]);
-					return (data[query[0]][post]);
-					break;
-				break;
-			
-				default:
-					sout("Bad Query at connectCMBRjson.");
-					return data;
-			}
-		});
+					case "sections":
+						// console.log("sections");
+						return data["sections"];
+						break;
+					case "blog":
+						if (query.length == 1) {
+							// console.log(data[query[0]]);
+							return (data[query[0]]);
+							break;
+						}
+						let post = ("post-" + query[1]);
+						sout("blog as post = " + post);
+						// console.log(data[query[0]][post]);
+						return (data[query[0]][post]);
+						break;
+						break;
+
+					default:
+						sout("Bad Query at connectCMBRjson.");
+						return data;
+				}
+			});
 	}
 
 }
@@ -334,13 +334,13 @@ const NCCOutil = {
 			div.appendChild(hr);
 			const startingDay = getDayOfWeek(year + "," + (i + 1) + "," + 1, true);
 			if (startingDay != 0) {
-					for(let k = 0; k < startingDay; k++) {
-						const emptySpan = document.createElement("span");
-						emptySpan.setAttribute("class", "empty-span");
-						emptySpan.appendChild(document.createTextNode("#"));
-						div.appendChild(emptySpan);
-					}
+				for (let k = 0; k < startingDay; k++) {
+					const emptySpan = document.createElement("span");
+					emptySpan.setAttribute("class", "empty-span");
+					emptySpan.appendChild(document.createTextNode("#"));
+					div.appendChild(emptySpan);
 				}
+			}
 			for (let j = 0; j < getDaysInMonthOfYear(year, i + 1); j++) {
 				const span = document.createElement("span");
 				span.setAttribute("id", `${year}-${i + 1}-${j + 1}`);
@@ -365,34 +365,34 @@ const NCCOutil = {
 		const emptySpans = document.querySelectorAll(".empty-span");
 		const calendarMonths = document.querySelectorAll(".calendar-month");
 		const theseMonths = document.querySelectorAll(".these-months");
-		
+
 		calendarDates.forEach(calendarDate => {
 			enable ?
-			calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
-			calendarDate.style = "initial";
+				calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
+				calendarDate.style = "initial";
 		});
 		emptySpans.forEach(emptySpan => {
 			enable ?
-			emptySpan.style = "width: 3.5rem; height: 1rem;" :
-			emptySpan.style = "initial;";
+				emptySpan.style = "width: 3.5rem; height: 1rem;" :
+				emptySpan.style = "initial;";
 		});
 		calendarMonths.forEach(calendarMonth => {
 			enable ?
-			calendarMonth.style = "height: 20rem; width:25rem;" :
-			calendarMonth.style = "initial";
+				calendarMonth.style = "height: 20rem; width:25rem;" :
+				calendarMonth.style = "initial";
 		});
 		theseMonths.forEach(thisMonth => {
 			if (enable) {
-			thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
-			const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-			for (let i = 0; i < 7; i++) {
-				const span = document.createElement("span");
-				span.classList.add("day-span");
-				const text = document.createTextNode(days[i]);
-				span.appendChild(text);
-				thisMonth.appendChild(span);
+				thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
+				const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+				for (let i = 0; i < 7; i++) {
+					const span = document.createElement("span");
+					span.classList.add("day-span");
+					const text = document.createTextNode(days[i]);
+					span.appendChild(text);
+					thisMonth.appendChild(span);
 				}
-			} else if (! enable) {
+			} else if (!enable) {
 				thisMonth.style = "initial";
 				while (thisMonth.children.length > 1) {
 					thisMonth.removeChild(thisMonth.lastChild);
@@ -415,7 +415,7 @@ const NCCOutil = {
 			"Long Off 2", // 2026 @ i4
 			"Long On 3", // 2027 @ i5
 			"Long On 4", // 2028 @ i6
-			"Long On 5", 
+			"Long On 5",
 			"Short Off 1", // 2029 @ i8
 			"Short Off 2", // 2030 @ i9
 			"Short On 1", // 2020, 2031 @ i10
@@ -433,7 +433,7 @@ const NCCOutil = {
 		if (indexBase % 4 === 0) {
 			indexSum -= 1;
 		}
-		if (indexBase === 0 ) {
+		if (indexBase === 0) {
 			indexSum = 0;
 		}
 		let indexProper = indexSum % 14;
@@ -448,7 +448,7 @@ const NCCOutil = {
 			const span = document.createElement("span");
 			if (biweeklyRelations[indexProper].includes("Off")) {
 				span.classList.add("aRotation");
-			} else if (biweeklyRelations[indexProper].includes("On")){
+			} else if (biweeklyRelations[indexProper].includes("On")) {
 				span.classList.add("bRotation");
 			}
 			calendarDay.appendChild(span);
@@ -460,7 +460,7 @@ const NCCOutil = {
 		let toggleRotation = true;
 		let toggleEnlargeCalendar = false;
 		document.querySelectorAll(".page-button").forEach(button => {
-			
+
 			button.onclick = function () {
 				CMBRutil.buttonOnClick(button);
 				switch (button.value) {
@@ -469,25 +469,25 @@ const NCCOutil = {
 						displayBiweeklyRotation(changeYear);
 						switchDisplay("aRotation", toggleRotation);
 						switchDisplay("bRotation", toggleRotation);
-					break;
+						break;
 					case "previous":
 						generateCalendar(--changeYear);
 						displayBiweeklyRotation(changeYear);
 						switchDisplay("aRotation", toggleRotation);
 						switchDisplay("bRotation", toggleRotation);
-					break;
+						break;
 					case "rotation":
-							if (toggleRotation) {
-								this.textContent = "Enable Rotation Display";
-								switchDisplay("aRotation", false);
-								switchDisplay("bRotation", false);
-								toggleRotation = false;
-							} else if (!toggleRotation) {
-								this.textContent = "Disable Rotation Display";
-								switchDisplay("aRotation", true);
-								switchDisplay("bRotation", true);
-								toggleRotation = true;
-							};
+						if (toggleRotation) {
+							this.textContent = "Enable Rotation Display";
+							switchDisplay("aRotation", false);
+							switchDisplay("bRotation", false);
+							toggleRotation = false;
+						} else if (!toggleRotation) {
+							this.textContent = "Disable Rotation Display";
+							switchDisplay("aRotation", true);
+							switchDisplay("bRotation", true);
+							toggleRotation = true;
+						};
 						break;
 					case "enlarge-calendar":
 						if (toggleEnlargeCalendar) {
@@ -496,7 +496,7 @@ const NCCOutil = {
 							toggleEnlargeCalendar = false;
 							window.scrollTo(0, 0);
 
-						} else if (! toggleEnlargeCalendar) {
+						} else if (!toggleEnlargeCalendar) {
 							this.textContent = "Shrink Calendar";
 							enlargeCalendar(true);
 							toggleEnlargeCalendar = true;
@@ -504,7 +504,7 @@ const NCCOutil = {
 						}
 					default:
 						console.log("Default Switch Triggered: enablePageButtons()");
-					break;
+						break;
 				}
 			}
 			button.onmouseenter = function () {
