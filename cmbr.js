@@ -1,5 +1,5 @@
 /** === CMBR.JS: GLOBAL UTILITIES ===>
- * @fileOverview Camberden's general site utility toolkit.
+ * @fileOverview BCN23 General site utility toolkit.
  * @interface CMBRutil
  * @author Chrispy (BCN23)
  */

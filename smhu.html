@@ -6,8 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="styles.css" media="screen">
 	<link href="https://fonts.googleapis.com/css?family=Lora:400italic" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker:400" rel="stylesheet" type="text/css">
-	<script src="smhu-action.js" defer></script>
-	<script src="buttons.js" defer></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@imacrayon/alpine-ajax@0.12.6/dist/cdn.min.js"
+		type="text/javascript"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+		type="text/javascript"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" type="text/javascript"></script>
+	<script src="cmbr.js" defer></script>
+	<script src="htmx.js" defer></script>
 	<title>NCCO.us</title>
 </head>
 
@@ -134,59 +139,34 @@
 					style="font-size:12px;fill:none;fill-rule:evenodd;stroke:#00205B;stroke-width:3.12499905;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
 
 			</svg>
-			<span id="ncco-title">/smhu</span>
-			<button class="navigation-button"><a href="https://int.dac.nc.gov" target="_blank">Intranet</a></button>
-			<button class="navigation-button"><a href="https://portal.osc.nc.gov/app" target="_blank">Fiori</a></button>
+			<a href="https://ncco.us"><span id="ncco-title">/smhu</span></a>
 		</div>
-		<!-- <div id="navigation-bottom">
-			<button class="navigation-button"><a href="https://ncco.us" target="_self">Home</a></button>
-			<button class="navigation-button wip"><a href="#navigation-top" rel="noreferrer" target="_self">Step Pay Plan</a></button>
-			<button class="navigation-button wip"><a href="#navigation-top" rel="noreferrer" target="_self">Paychecks</a></button>
-			<button class="navigation-button wip"><a href="#navigation-top" rel="noreferrer" target="_self">NC Prison Map</a></button>
-			<button class="navigation-button wip"><a href="/smhu.html" rel="noreferrer" target="_self">Disciplinary</a></button>
-		</div> -->
 	</div>
 	<main class="page-col-grid">
 
-			<div class="page-row-grid">
+		<div class="page-row-grid">
 
-				<div class="page-item">
-					<h2 id="heater">How Long will the New SMHU Corporal Office Heater Last?</h2>
-					<hr>
-					<h2 id="lasted">Well, it lasted for<span id="lasted-days"></span> days so far!!!</h2>
-					<ul>
-						<li>Hello Corporal Langley.</li>
-					</ul>
-					<br>
-					<div id="page-field" class="page-row-grid smhu">
+			<div class="page-item">
+				<h2 id="heater">How Long will the New SMHU Corporal Office Heater Last?</h2>
+				<hr>
+				<h2 id="lasted">Well, it lasted for<span id="lasted-days"></span> days so far!!!</h2>
+				<br>
+				<div id="page-field" class="page-row-grid smhu">
 
-					</div>
-					<br>
-					<!-- <div class="button-grid-row">
+				</div>
+				<br>
+				<!-- <div class="button-grid-row">
 						<button class="page-button" value="previous">Previous</button>
 						<button class="page-button" value="next">Next</button>
 						<button class="page-button toggleable" value="rotation">Disable Rotation Display</button>
 						<button class="page-button toggleable" value="enlarge-calendar">Enlarge Calendar</button>
 					</div> -->
-				</div>
 			</div>
-		</main>
+		</div>
+	</main>
 
-	<footer class="page-row-grid">
-			<div id="footer-info">
-					Last update: <span id="latest-update"></span>
-					<br><br>
-					Created by a North Carolina Correctional Officer for North Carolina Correctional Officers
-					<br><br>
-					Disclaimer:
-					<span id="footer-disclaimer">This site is not formally associated with the North Carolina
-						Department of Adult Correction</span>
-					<br><br>
-			</div>
-
-			<div id="footer-signature">
-				<img src="./assets/sig.png" />
-			</div>
+	<footer class="page-row-grid" hx-get="footer.html" hx-target="this" hx-swap="innerHTML" hx-trigger="load" x-data>
 	</footer>
+	<script src="smhu-action.js"></script>
 
 </body>
