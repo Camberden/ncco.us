@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="shortcut icon" href="images/nc-flag-min.svg" />
-	<link rel="stylesheet" type="text/css" href="/styles.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
 	<script defer src="https://cdn.jsdelivr.net/npm/@imacrayon/alpine-ajax@0.12.6/dist/cdn.min.js"
 		type="text/javascript"></script>
 	<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
@@ -15,8 +15,26 @@
 	<title>NCCO.us</title>
 </head>
 
-<body>
-	<nav class="navigation">
+<body data-theme="dark" x-data="{
+		utilitiesView: false,
+		utilitiesButton: document.getElementById('util-button'),
+		toggleUtilitiesView: function(viewEl) {
+			if (this.utilitiesView) {
+				viewEl.classList.remove('button-toggled');
+				viewEl.classList.remove('util');
+			}
+			if(!this.utilitiesView) {
+				viewEl.classList.add('button-toggled');
+				viewEl.classList.add('util');
+			}
+			this.utilitiesView = ! this.utilitiesView;
+		},
+		}">
+
+	<nav x-data="{
+				navHovering: false,
+			}" @mouseenter="navHovering=true;" @mouseleave="navHovering=false;" :style="navHovering ? console.log() : 'background:transparent; box-shadow:none;'
+			">
 		<div id="navigation-top">
 			<div id="navigation-notice"><span id="notice-bar" value="3000"></span>
 			</div>
@@ -52,35 +70,227 @@
 					style="font-size:12px;fill:#ffca00;fill-opacity:1;fill-rule:evenodd;stroke:#00205B;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;stroke-miterlimit:4" />
 				<!-- <path id="LOW-LEFT-UNDERSTROKE" d="M51.461206 366.06176c1.048247-1.04831 3.12055-.78791 5.980045-.25774 2.28296.26947 4.884426.37188 6.931531.60291 3.388659-.27065 5.329931-1.04615 3.936972-2.61813" style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00205B;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;stroke-miterlimit:4"/> -->
 				<!-- <path id="LOW-RIGHT-FLAP" d="M217.27395 386.52888c15.63096-8.53542 18.46516-12.09521 27.03193-18.64106l-18.99786-.38875c.22617-1.73007 4.37345-23.26899 4.76667-24.78898-14.30279 9.29439-21.08947 13.55485-40.60375 18.93073-7.75366 2.10529.88965 9.94529 1.69655 11.9945 5.30121-2.33978 9.79747-5.11789 13.00577-8.65915" style="font-size:12px;fill:#ffca00;fill-opacity:1;fill-rule:evenodd;stroke:#00205B;stroke-width:1;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;stroke-miterlimit:4"/> -->
-				<!-- <path id="LOW-RIGHT-UNDERSTROKE" d="M203.61467 365.1401c-1.7548-.79323-3.56605-.44255-5.75729-.25774-2.07936.29589-4.43892.64253-6.77429.71951-3.9148-.02642-5.32994-1.62481-4.09421-2.73473" style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00205B;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;stroke-miterlimit:4"/> -->
 			</svg>
-			<!-- <img src="assets/radix-icons/hamburger-menu.svg"/> -->
-			<span id="ncco-title"></span>
-			<!-- <div> -->
-			<button class="navigation-button"><a href="https://int.dac.nc.gov" target="_blank">Intranet</a></button>
-			<button class="navigation-button"><a href="https://portal.osc.nc.gov/app" target="_blank">Fiori</a></button>
-			<button class="navigation-button"><a href="https://identity.wd108.myworkday.com/wday/authgwy/nc/upc/login"
-					target="_blank">Internal Jobs</a></button>
-			<button class="navigation-button"><a href="/" target="_self">Home</a></button>
-			<button class="navigation-button" hx-get="/components/calendar.htm" hx-target="main" hx-trigger="click"
-				hx-swap="outerHTML">Rotation Calendar</button>
-			<button class="navigation-button" hx-get="/components/step.htm" hx-target="main" hx-trigger="click"
-				hx-swap="outerHTML">Step Pay Plan</button>
-			<button class="navigation-button" hx-get="/components/map.htm" hx-target="main" hx-trigger="click"
-				hx-swap="outerHTML">Map</button>
+			<!-- <img src="assets/radix-icons/hamburger-menu.svg" /> -->
 		</div>
-		<!-- <div id="navigation-bottom" x-data="{ open: false }"> -->
-		<!-- <button class="navigation-button"><a href="/" target="_self">Home</a></button>
-			<button class="navigation-button" hx-get="/components/calendar.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Rotation Calendar</button>
-			<button class="navigation-button" hx-get="/components/step.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Step Pay Plan</button> -->
-		<!-- <button class="navigation-button wip" hx-get="/components/map.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">System Map</button> -->
-		<!-- <button class="navigation-button wip" hx-get="/components/disciplinary.htm" hx-target="main" hx-trigger="click" hx-swap="outerHTML">Disciplinary</button> -->
-		<!-- </div> -->
-		<hr class="hr-push-down">
+		<span id="ncco-title"></span>
+		<div id="navigation-bottom" x-show="navHovering" x-transition>
+			<button class="navigation-button site-external"><a href="https://int.dac.nc.gov"
+					target="_blank">INTRANET</a></button>
+			<button class="navigation-button site-external"><a href="https://portal.osc.nc.gov/app"
+					target="_blank">FIORI</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://identity.wd108.myworkday.com/wday/authgwy/nc/upc/login"
+					target="_blank">WORKDAY</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://opus.doc.state.nc.us/apps/offinfo/OffInfoServlet" target="_blank">OPUS</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://ncconnect.sharepoint.com/sites/DACInstitutions/SitePages/Inmate-Banking-System.aspx"
+					target="_blank">IBS</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://ncconnect.sharepoint.com/sites/NCDAC/SitePages/Controller.aspx#controller-s-office-forms-(cntr)"
+					target="_blank">CNTR</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://ncconnect.sharepoint.com/sites/DACInstitutions/SitePages/NCFS-Inventory-Management.aspx"
+					target="_blank">INV</a></button>
+			<button class="navigation-button site-external"><a
+					href="https://webapps7.doc.state.nc.us/apps/conweb/ConwebServlet"
+					target="_blank">CONCAN</a></button>
+			<!-- <button class="navigation-button site-external"><a
+						href="https://ncconnect.sharepoint.com/sites/DACController/Prison%20Central%20Region/Forms/AllItems.aspx?e=2%3ABjSXjt&CT=1786683583662&OR=OWA-NT-Mail&CID=708d5df9-4dc3-8a8d-674f-94eafe70558b&SI=NonSentItems&clickParams=eyJYLUFwcE5hbWUiOiJNaWNyb3NvZnQgT3V0bG9vayBXZWIgQXBwIiwiWC1BcHBWZXJzaW9uIjoiMjAyNjA3MTcwMDcuMTUiLCJPUyI6Ik1hYyBPUyBYIHVuZGVmaW5lZCJ9&SLSync=N"
+						target="_blank">REGION</a></button> -->
+			<button class="navigation-button site-external"><a
+					href="https://emzn.fa.us8.oraclecloud.com/fscmUI/faces/FuseWelcome"
+					target="_blank">NCFS</a></button>
+			<button class="navigation-button site-external"><a href="https://eprocurement.nc.gov/login"
+					target="_blank">ePROC</a></button>
+		</div>
 	</nav>
 
-	<main>
-		<div class="grid-col-1-1">
+	<hr class="hr-push-down">
+
+
+	<main class="page-col-grid" x-data="{
+			moduleView: 'Home',
+			changeModuleView: function(viewEl) {
+				document.querySelectorAll('.toggleable').forEach(b => {
+					b.classList.remove('button-toggled');
+				});
+				this.moduleView = viewEl.value;
+				viewEl.classList.add('button-toggled');
+			},
+		}">
+
+		<header class="page-item">
+			<h2 id="tool-title" x-text="moduleView"></h2>
+			<h3><span id="current-date-and-time"></span></h3>
+			<hr class="hr-dark">
+			<div class="button-row-grid">
+				<button class="page-button toggleable button-toggled" value="Home"
+					@click="changeModuleView($el);">Home</button>
+				<button class="page-button toggleable" value="Step Pay" @click="changeModuleView($el);">Step
+					Pay Plan</button>
+				<button class="page-button toggleable" value="Policies" @click="changeModuleView($el);">Policies &
+					Procedures</button>
+				<button class="page-button toggleable" value="Notes" @click="changeModuleView($el);">Notes
+					& Charts</button>
+				<button class="page-button toggleable wip" value="Gamification" @click="changeModuleView($el);"
+					disabled>Gamification</button>
+				<button id="util-button" class="page-button" @click="toggleUtilitiesView($el);"
+					x-ref="utilRef">Utilities</button>
+			</div>
+			<!-- ^ PENDING BUTTON ROW FOR LINKS AND COMMANDS ^ -->
+			<div class="button-grid-row grid-col-5x-1" x-data="{
+				hotkeyRange: 5,
+				hotkeyView: 1,
+				hotkeyListView: false,
+				cycleHotkey: function() {
+					this.hotkeyView === this.hotkeyRange ? this.hotkeyView = 1 :this.hotkeyView += 1;
+				}
+				}">
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 1"><a
+						href="assets/refdocs/DC-138B.pdf" target="_blank">DC-138B</a></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 1"><a
+						href="assets/refdocs/DC-704.pdf" target="_blank">DC-704</a></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 1"><a
+						href="assets/refdocs/DC-902.xlsx" target="_blank">DC-902</a></button>
+				<button class="navigation-button site-external" x-show="hotkeyView === 1"><a
+						href="assets/refdocs/CNTR-005-May26.pdf" target="_blank">CNTR-005</a></button>
+
+				<button class="navigation-button site-external" x-show="hotkeyView === 2"><a
+						href="assets/refdocs/CNTR-005-May26-c1.pdf" target="_blank">CNTR-005</a></button>
+				<button class="navigation-button site-external" x-show="hotkeyView === 2"><a
+						href="assets/refdocs/CNTR-005-May26-c2.pdf" target="_blank">CNTR-005</a></button>
+				<button class="navigation-button site-external" x-show="hotkeyView === 2"><a
+						href="assets/refdocs/CNTR-005-May26-c3.pdf" target="_blank">CNTR-005</a></button>
+				<button class="navigation-button site-external" x-show="hotkeyView === 2"><a
+						href="assets/refdocs/CNTR-005-May26-c4.pdf" target="_blank">CNTR-005</a></button>
+
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 3"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 3"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 3"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 3"></button>
+
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 4"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 4"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 4"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 4"></button>
+
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 5"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 5"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 5"></button>
+				<button class="navigation-button site-external wip" x-show="hotkeyView === 5"></button>
+
+
+
+
+				<button class="navigation-button site-internal" @click="cycleHotkey"
+					x-text="hotkeyView + ' / ' + hotkeyRange" @mouseenter="hotkeyListView = true"></button>
+				<div style="position:fixed; display: none; border: 0.5rem ridge white; background-color: grey; width: 5rem; height: 5rem;"
+					x-text="'text!'">
+				</div>
+			</div>
+		</header>
+
+
+
+		<!-- ! HOME -->
+		<section class="page-col-grid" style="gap:2rem;" x-show="moduleView === 'Home'" x-transition>
+			<div>
+				<h2 class="tool-header" x-text="'Welcome to NCCO.us'"></h2>
+				<hr class="hr-dark">
+				<div>
+					<div>Presented here are webtools of use to a North Carolina Correctional Officer.</div>
+					<div>Included are pay calculators, future estimators, and visual aids.</div>
+					<div>This is a hobby project that is continually under development at-will.</div>
+				</div>
+				<figure>
+					<figcaption>
+						<span>Last Updated On: </span><span id="latest-update"></span> <span
+							style="font-family:monospace; color:#ffca00">c:</span>
+					</figcaption>
+					<img width="500" height="250" src="assets/prison-photos/prison-orange.jpeg" />
+				</figure>
+
+			</div>
+		</section>
+
+
+		<!-- ! POLICIES -->
+		<section class="page-col-grid" style="gap:2rem;" x-show="moduleView === 'Policies'" x-transition>
+			<div class="grid-col-1-1-1">
+				<div class="page-item" style="border-right-width: 0.5rem; border-bottom-color: #bf0a30; flex:1;">
+					<h2 class="tool-header" x-text="'Periphery Policies'"></h2>
+					<hr class="hr-dark">
+					<menu id="policy-side-bar">
+						<li>
+							<button class="navigation-button site-internal"><a href="assets/refdocs/CNTR-100.pdf"
+									target="_blank">Accounts Payable</a></button>
+						</li>
+						<li><button class="navigation-button site-internal"><a href="assets/refdocs/CNTR-800-04.pdf"
+									target="_blank">Canteen Operations</a></button></li>
+					</menu>
+				</div>
+				<iframe src="assets/refdocs/NCDAC-Institutions-Policies.pdf" width="1000" height="640" frameborder="0"
+					scrolling="no" allowfullscreen title="Policies and Procedures"></iframe>
+
+				<div>
+					<i>All links, whether at the left side bar or within the table of contents pdf, will direct the user
+						to an external tab.</i>
+				</div>
+			</div>
+
+		</section>
+
+		<!-- ! STEP PAY -->
+		<section class="page-col-grid" style="gap:2rem;" x-show="moduleView === 'Step Pay'" x-transition>
+
+			<div class="page-item" style="background-color: rgb(from var(--doi-black) r g b / 50%);"
+				hx-get="/components/step.htm" hx-trigger="intersect" hx-target="this" hx-swap="innerHTML"></div>
+
+
+		</section>
+
+		<!-- ! NOTES -->
+		<section class="page-col-grid grid-col-1-1" style="gap:2rem;" x-show="moduleView === 'Notes'"
+			x-data="{ notesListSelected: 'Tutorials',}" x-transition>
+
+
+			<div id="notes-module-left"
+				style="border-right-width: 0.5rem; border-right-color: #bf0a30; position: static;" class="page-item"
+				x-data="{
+
+						pmGenerateList: function(moduleData) {
+							console.log();
+						},
+					}">
+
+				<h2 class="tool-header" x-text="notesListSelected"></h2>
+				<hr class="hr-dark">
+				<button class="page-button" @click="notesListSelected='Digital Workflow'"
+					x-text="'Digital Workflow'"></button>
+				<button class="page-button" @click="notesListSelected='Physical Workflow'"
+					x-text="'Physical Workflow'"></button>
+				<div class="module-lists"></div>
+			</div>
+
+
+			<div id="notes-module-right" class="opus-item flex-row-grid">
+				<div id="notes-frame">
+
+					<div class="page-item" x-show="notesListSelected === 'Digital Workflow'">
+						<h2>Personal OPUS Color Config</h2>
+						<hr class="hr-dark" style="width:50%;">
+						<button class="navigation-button site-internal"><a href="assets/acctasks/bcn23-opus-pref.col"
+								target="_blank">GET!</a></button>
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+
+		<!-- <div class="grid-col-1-1">
 			<figure id="upper-left-welcome-frame" class="welcome-frame">
 				<figcaption>Granville CI #3980</figcaption>
 			</figure>
@@ -103,11 +313,130 @@
 			<figure id="bottom-right-welcome-frame" class="welcome-frame">
 				<figcaption>Wake CC #4265</figcaption>
 			</figure>
-		</div>
+		</div> -->
 	</main>
 
 
-	<footer class="page-row-grid" hx-get="footer.html" hx-target="this" hx-swap="innerHTML" hx-trigger="load" x-data>
+	<hr class="hr-push-up">
+
+	<footer x-show="utilitiesView" id="footer-sections"
+		:style="utilitiesView ? 'position:fixed;' : 'position:relative;'">
+		<span x-show="utilitiesView" class="modal-close" @click="toggleUtilitiesView(utilitiesButton);">⨂</span>
+		<div x-show="!utilitiesView">
+
+		</div>
+
+		<div x-show="utilitiesView" class="page-row-grid grid-col-1-1-1" style="gap:2rem;">
+
+			<!-- % OFFENDER SEARCH -->
+			<div x-show="utilitiesView">
+				<div class="grid-col-1">
+					<!-- <h2 class="tool-header">Offender Search</h2> -->
+					<div class="" x-data="{
+						offnum: '',
+						offlink: '',
+						offnumSearched: '',
+						offnumSearchedListId: 'offnumSearchedList',
+						constrainSeven: function() {
+							if (this.offnum.length >= 7) {
+								this.offnum.substring(0, 7);
+								console.log(this.offnum.length);
+								};
+							if (this.offnum.length === 7) {
+								this.offlink = 'https://opus.doc.state.nc.us/apps/offinfo/OffInfoServlet?IONAME=OIOffend1&CALLER=OIOffenderSearch2&CMDOCNUM=' + this.offnum;
+								};
+							},
+						executeQuery: function() {
+							const a = document.createElement('a');
+							a.setAttribute('href', this.offlink);
+							a.setAttribute('target', '_blank');
+
+							this.offnumSearched = (this.offnum + '');
+							
+							const li = document.createElement('li');
+							const liLink = document.createElement('a');
+							liLink.setAttribute('href', this.offlink);
+
+							const span = document.createElement('span');
+							span.setAttribute('style', 'border: 0.1rem solid red');
+							span.innerText = this.offnum;
+							liLink.appendChild(span);
+							li.appendChild(liLink);
+							document.getElementById(this.offnumSearchedListId).appendChild(li);
+							a.click();
+							},
+
+						}">
+
+						<div>
+							<br>
+							<h2 class="tool-header">Offender Search</h2>
+							<button class="page-button" @click="offnum = '';" x-text="'Clear'"></button>
+							<input id="DOCNUM" name="DOCNUM" type="text" x-model="offnum" class="input4265"
+								x-bind:style="offnum.length !== 7 ? 'color:red;' : 'color: green; outline-color:green;'"
+								@keyup.debounce.100="constrainSeven()"
+								@keydown.enter="offnum.length === 7 ? executeQuery() : console.warn('Invalid Input')" />
+
+							<span class="opus-digit-box" x-text="offnum[0] ? offnum[0] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[1] ? offnum[1] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[2] ? offnum[2] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[3] ? offnum[3] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[4] ? offnum[4] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[5] ? offnum[5] : '#'"></span>
+							<span class="opus-digit-box" x-text="offnum[6] ? offnum[6] : '#'"></span>
+							<button class="page-button" x-bind:disabled="offnum.length !== 7"
+								x-effect="constrainSeven()" x-text="'Search'"
+								@click="offnum.length === 7 ? executeQuery() : console.warn('Invalid Input')"></button>
+							<div class="button-grid-row">
+								<pre x-text="'Searched: '"></pre>
+								<ul id="offnumSearchedList"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- % DROPZONE -->
+			<div x-show="utilitiesView">
+				<div x-data="{
+					dropzoneId: document.getElementById('dropzone'),
+					dropzoneContent: '',
+					dropzoneCopied: false,
+					collectDropzone: function(){
+						this.dropzoneId.focus();
+						navigator.clipboard.writeText(this.dropzoneContent);
+						this.dropzoneCopied = ! this.dropzoneCopied;
+						const elapsedTime = setInterval(() => {
+							this.dropzoneCopied = ! this.dropzoneCopied;
+						}, 1000);
+						setTimeout(() => {
+							clearInterval(elapsedTime);
+						 }, 1000);
+						},
+					clearDropzone: function(){ 
+						this.dropzoneId.innerText='';
+						this.dropzoneContent='';
+						this.dropzoneId.focus();
+						},
+					}">
+
+					<div>
+						<br>
+						<h2 class="tool-header">Dropzone</h2>
+					</div>
+					<div class="grid-col-1-1-1">
+						<div class="grid-row-1-1-1">
+							<button class="page-button" x-text="dropzoneCopied ? 'Copied!' : 'Copy';"
+								@click="collectDropzone();"></button>
+							<button class="page-button" x-text="'Clear'" @click="clearDropzone();"></button>
+						</div>
+						<textarea id="dropzone" x-model="dropzoneContent"
+							:style="dropzoneCopied ? 'color: var(--doi-yellow); outline-color: var(--doi-yellow-rgb);' : 'color: var(--doi-monospace);'"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</footer>
 
 	<script src="action.js"></script>

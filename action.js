@@ -10,31 +10,21 @@
  * - Update date to be automated upon server-side script implementation.
  * @author Camberden (Chrispy | Kippi)
  */
-const latestUpdate = "Monday, March 9th, 2026";
-const date = new Date();
-const currentYear = date.getFullYear();
-const currentMonth = date.getMonth();
-const currentDay = date.getDate();
-const currentDayOfWeek = date.getDay();
-const dateOptions = {
-	weekday: "long", //long, narrow
-	year: "numeric", //
-	month: "long", //long, short, narrow, numeric
-	day: "2-digit",
-}
-const currentDate = currentYear + "-" + (currentMonth + 1) + "-" + currentDay;
-const currentDateString = date.toLocaleDateString("en-US", dateOptions);
-let changeYear = currentYear;
-// Nested SVG needs no xmlns =====>
-const testDate = new Date(2024, 2, 10);
-const testWeekday = testDate.toLocaleDateString("en-US", dateOptions).split(",");
-const weekday = testWeekday[0];
-let openedPage = false;
+const latestUpdate = "Saturday, October 10th, 2026";
 
+const displayCurrentDateAndTime = () => {
+	const currentDateAndTimeElement = document.getElementById("current-date-and-time");
+	const latestUpdateElement = document.getElementById("latest-update");
+	latestUpdateElement.textContent = latestUpdate;
+	const now = new Date();
+	const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+	const formattedDateAndTime = now.toLocaleDateString('en-US', options);
+	currentDateAndTimeElement.textContent = formattedDateAndTime;
+};
 function enableNavigationButtons() {
 	document.querySelectorAll(".navigation-button").forEach(button => {
 		button.onclick = function () {
-			
+
 			if (document.querySelector(".component-script")) {
 				document.querySelector("body").removeChild(document.querySelector(".component-script"));
 			}
@@ -49,7 +39,7 @@ function enableNavigationButtons() {
 		}
 	});
 	document.querySelectorAll(".wip").forEach(wip => {
-		wip.onclick = function() {
+		wip.onclick = function () {
 			displayNavigationNotice();
 		}
 	})
@@ -65,20 +55,72 @@ function displayNavigationNotice() {
 	let countdown = second;
 	bar.innerText = (duration / countdown) + "s";
 	const elapsedTime = setInterval(() => {
-			bar.innerText = ((duration - countdown)/ second) + "s";
-			countdown += second;
-		}, second);
+		bar.innerText = ((duration - countdown) / second) + "s";
+		countdown += second;
+	}, second);
 
 	setTimeout(() => {
 		clearInterval(elapsedTime);
-  		notice.style.display = "none";
+		notice.style.display = "none";
 		bar.classList.remove("timeout-bar-animation");
 	}, duration);
 }
 
+/**
+ * @static
+ * @description Enables the .page-button class events onclick, onmouseenter, and onmouseleave.
+ */
+function enablePageButtons() {
+	let toggleRotation = true;
+	let toggleEnlargeCalendar = false;
+	document.querySelectorAll(".page-button").forEach(button => {
+
+		button.onclick = function () {
+			CMBRutil.buttonOnClick(button);
+			switch (button.value) {
+				case "next":
+					window.scrollTo(0, 0);
+					break;
+				case "previous":
+					window.scrollTo(0, 0);
+					break;
+
+				default:
+					console.log("Default Switch Triggered: enablePageButtons()");
+					break;
+			}
+		}
+		button.onmouseenter = function () {
+			CMBRutil.buttonOnMouseEnter(button);
+		}
+		button.onmouseleave = function () {
+			CMBRutil.buttonOnMouseLeave(button);
+		}
+	});
+}
+/**
+ * @static
+ * @description Intakes .class descriptors
+ * @param {String} buttons 
+ */
+function enableButtons(buttons) {
+	document.querySelectorAll(buttons).forEach(button => {
+
+		button.onclick = function () {
+			CMBRutil.buttonOnClick(button);
+		}
+		button.onmouseenter = function () {
+			CMBRutil.buttonOnMouseEnter(button);
+		}
+		button.onmouseleave = function () {
+			CMBRutil.buttonOnMouseLeave(button);
+		}
+	});
+}
+
 // ----- MAIN GENERATOR ----- //
 
-function getMonthText(val){
+function getMonthText(val) {
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	return months[val - 1];
 }
@@ -111,34 +153,34 @@ function enlargeCalendar(enable) {
 	const emptySpans = document.querySelectorAll(".empty-span");
 	const calendarMonths = document.querySelectorAll(".calendar-month");
 	const theseMonths = document.querySelectorAll(".these-months");
-	
+
 	calendarDates.forEach(calendarDate => {
 		enable ?
-		calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
-		calendarDate.style = "initial";
+			calendarDate.style = "width: 3.5rem; height: 1rem; font-size: 1.5rem; padding-left: 0.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;" :
+			calendarDate.style = "initial";
 	});
 	emptySpans.forEach(emptySpan => {
 		enable ?
-		emptySpan.style = "width: 3.5rem; height: 1rem;" :
-		emptySpan.style = "initial;";
+			emptySpan.style = "width: 3.5rem; height: 1rem;" :
+			emptySpan.style = "initial;";
 	});
 	calendarMonths.forEach(calendarMonth => {
 		enable ?
-		calendarMonth.style = "height: 20rem; width:25rem;" :
-		calendarMonth.style = "initial";
+			calendarMonth.style = "height: 20rem; width:25rem;" :
+			calendarMonth.style = "initial";
 	});
 	theseMonths.forEach(thisMonth => {
 		if (enable) {
-		thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
-		const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-		for (let i = 0; i < 7; i++) {
-			const span = document.createElement("span");
-			span.classList.add("day-span");
-			const text = document.createTextNode(days[i]);
-			span.appendChild(text);
-			thisMonth.appendChild(span);
+			thisMonth.style = "font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem;";
+			const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+			for (let i = 0; i < 7; i++) {
+				const span = document.createElement("span");
+				span.classList.add("day-span");
+				const text = document.createTextNode(days[i]);
+				span.appendChild(text);
+				thisMonth.appendChild(span);
 			}
-		} else if (! enable) {
+		} else if (!enable) {
 			thisMonth.style = "initial";
 			while (thisMonth.children.length > 1) {
 				thisMonth.removeChild(thisMonth.lastChild);
@@ -161,7 +203,7 @@ function displayBiweeklyRotation(year) {
 		"Long Off 2", // 2026 @ i4
 		"Long On 3", // 2027 @ i5
 		"Long On 4", // 2028 @ i6
-		"Long On 5", 
+		"Long On 5",
 		"Short Off 1", // 2029 @ i8
 		"Short Off 2", // 2030 @ i9
 		"Short On 1", // 2020, 2031 @ i10
@@ -179,7 +221,7 @@ function displayBiweeklyRotation(year) {
 	if (indexBase % 4 === 0) {
 		indexSum -= 1;
 	}
-	if (indexBase === 0 ) {
+	if (indexBase === 0) {
 		indexSum = 0;
 	}
 	let indexProper = indexSum % 14;
@@ -194,19 +236,19 @@ function displayBiweeklyRotation(year) {
 		const span = document.createElement("span");
 		if (biweeklyRelations[indexProper].includes("Off")) {
 			span.classList.add("aRotation");
-		} else if (biweeklyRelations[indexProper].includes("On")){
+		} else if (biweeklyRelations[indexProper].includes("On")) {
 			span.classList.add("bRotation");
 		}
 		calendarDay.appendChild(span);
 		indexProper++;
 	});
-} 
+}
 
 function enablePageButtons() {
 	let toggleRotation = true;
 	let toggleEnlargeCalendar = false;
 	document.querySelectorAll(".page-button").forEach(button => {
-		
+
 		button.onclick = function () {
 			CMBRutil.buttonOnClick(button);
 			switch (button.value) {
@@ -215,25 +257,25 @@ function enablePageButtons() {
 					displayBiweeklyRotation(changeYear);
 					switchDisplay("aRotation", toggleRotation);
 					switchDisplay("bRotation", toggleRotation);
-				break;
+					break;
 				case "previous":
 					generateCalendar(--changeYear);
 					displayBiweeklyRotation(changeYear);
 					switchDisplay("aRotation", toggleRotation);
 					switchDisplay("bRotation", toggleRotation);
-				break;
+					break;
 				case "rotation":
-						if (toggleRotation) {
-							this.textContent = "Enable Rotation Display";
-							switchDisplay("aRotation", false);
-							switchDisplay("bRotation", false);
-							toggleRotation = false;
-						} else if (!toggleRotation) {
-							this.textContent = "Disable Rotation Display";
-							switchDisplay("aRotation", true);
-							switchDisplay("bRotation", true);
-							toggleRotation = true;
-						};
+					if (toggleRotation) {
+						this.textContent = "Enable Rotation Display";
+						switchDisplay("aRotation", false);
+						switchDisplay("bRotation", false);
+						toggleRotation = false;
+					} else if (!toggleRotation) {
+						this.textContent = "Disable Rotation Display";
+						switchDisplay("aRotation", true);
+						switchDisplay("bRotation", true);
+						toggleRotation = true;
+					};
 					break;
 				case "enlarge-calendar":
 					if (toggleEnlargeCalendar) {
@@ -242,7 +284,7 @@ function enablePageButtons() {
 						toggleEnlargeCalendar = false;
 						window.scrollTo(0, 0);
 
-					} else if (! toggleEnlargeCalendar) {
+					} else if (!toggleEnlargeCalendar) {
 						this.textContent = "Shrink Calendar";
 						enlargeCalendar(true);
 						toggleEnlargeCalendar = true;
@@ -250,7 +292,7 @@ function enablePageButtons() {
 					}
 				default:
 					console.log("Default Switch Triggered: enablePageButtons()");
-				break;
+					break;
 			}
 		}
 		button.onmouseenter = function () {
@@ -283,8 +325,11 @@ function handleEvent(event) {
 	console.log("Event type: " + event);
 }
 
-( async () => {
-	
+(async () => {
+
+	setInterval(displayCurrentDateAndTime, 1000);
+	displayCurrentDateAndTime();
+	enablePageButtons();
 	enableNavigationButtons();
 
 })();
