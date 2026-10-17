@@ -1231,17 +1231,6 @@ textarea:focus-visible {
 /* |==========| FOOTER BOX AND DATA |====================> */
 /* |==========| TO DISPLAY AT PAGE BOTTOM |====================> */
 
-footer {
-	font-family: monospace;
-	font-size: 1rem;
-	flex: 1;
-	padding: 3rem;
-	z-index: 75;
-	bottom: 0;
-	width: 100%;
-	background-color: var(--doi-black);
-	/* font-style: var(--doi-font-italic); */
-}
 
 footer {
 	position: relative;
